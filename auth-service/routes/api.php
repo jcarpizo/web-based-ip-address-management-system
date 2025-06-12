@@ -14,10 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth_service')->group(function () {
-    Route::post('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
-    Route::post('/refresh', [AuthController::class, 'refresh'])->middleware('auth:api')->name('refresh');
-    Route::post('/verify', [AuthController::class, 'verify'])->middleware('auth:api')->name('verify');
+Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+    Route::post('/login', [AuthController::class, 'postLogin'])->name('login');
+    Route::post('/logout', [AuthController::class, 'postLogout'])->name('logout');
+
+    Route::post('/register', [AuthController::class, 'postRegister'])->name('register');
+    Route::post('/refresh', [AuthController::class, 'postRefresh'])->name('refresh');
+    Route::post('/verify', [AuthController::class, 'postVerify'])->name('verify');
 });

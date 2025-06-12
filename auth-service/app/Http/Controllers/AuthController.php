@@ -6,6 +6,7 @@ use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthRegisterRequest;
 use App\Interfaces\AuthInterface;
 use Illuminate\Http\JsonResponse;
+use Throwable;
 
 class AuthController extends Controller
 {
@@ -17,13 +18,14 @@ class AuthController extends Controller
     public function __construct(AuthInterface $authService)
     {
         $this->authService = $authService;
+        $this->middleware('api', ['except' => ['login']]);
     }
 
     /**
      * @param AuthRegisterRequest $request
      * @return JsonResponse
      */
-    public function register(AuthRegisterRequest $request): JsonResponse
+    public function postRegister(AuthRegisterRequest $request): JsonResponse
     {
         $user = $this->authService->createUser($request->toArray());
         return response()->json(
@@ -38,9 +40,9 @@ class AuthController extends Controller
      * @param AuthLoginRequest $request
      * @return JsonResponse
      */
-    public function login(AuthLoginRequest $request): JsonResponse
+    public function postLogin(AuthLoginRequest $request): JsonResponse
     {
-        if (!$token = auth('api')->attempt($request->toArray())) {
+        if (!$token = auth()->attempt($request->toArray())) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->respondWithToken($token);
@@ -55,32 +57,40 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 
     /**
      * @return JsonResponse
      */
-    public function logout(): JsonResponse
+    public function postLogout(): JsonResponse
     {
-        auth()->logout();
+        auth()->logout(true);
         return response()->json(['message' => 'Successfully logged out']);
     }
 
     /**
      * @return JsonResponse
      */
-    public function verify(): JsonResponse
+    public function postVerify(): JsonResponse
     {
-        return response()->json(auth()->user());
+        $token = auth()->user();
+        if (empty($token)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return response()->json($token);
     }
 
     /**
      * @return JsonResponse
      */
-    public function refresh(): JsonResponse
+    public function postRefresh(): JsonResponse
     {
-        return $this->respondWithToken(auth()->refresh());
+        try {
+            return $this->respondWithToken(auth('api')->refresh());
+        } catch (Throwable) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 }
