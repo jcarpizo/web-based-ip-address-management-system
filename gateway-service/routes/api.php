@@ -15,12 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
-
 Route::group(['prefix' => 'gateway'], function () {
-    Route::post('/login', [AuthServiceController::class, 'postTest'])->name('postTest');
-    Route::post('/verify', [AuthServiceController::class, 'postVerify'])->name('postVerify');
+    Route::post('/login', [AuthServiceController::class, 'authLogin'])->name('authLogin');
+    Route::post('/register', [AuthServiceController::class, 'authRegister'])->name('authRegister');
+    Route::post('/verify', [AuthServiceController::class, 'authVerifyToken'])->name('authVerifyToken');
+    Route::post('/refresh', [AuthServiceController::class, 'authRefreshToken'])->name('authRefreshToken');
+    Route::post('/logout', [AuthServiceController::class, 'authLogout'])->name('authLogout');
 });

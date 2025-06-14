@@ -18,6 +18,8 @@ class GatewayService implements GatewayInterface
                 'headers' => array_merge($headers, [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
+                    'Accept-Encoding' => 'gzip',
+                    'Accept-Charset' => 'utf-8',
                 ]),
                 'query' => $data,
             ]);
