@@ -15,7 +15,7 @@ class IpAddressController extends Controller
         $this->ipService = $ipService;
     }
 
-    public function create(IPAddressRequest $request): JsonResponse
+    public function ipCreate(IPAddressRequest $request): JsonResponse
     {
         $ipAddress = $this->ipService->create($request->toArray());
         return response()->json(
@@ -26,7 +26,7 @@ class IpAddressController extends Controller
             ]);
     }
 
-    public function update(int $id, IpAddressRequest $request): JsonResponse
+    public function ipUpdate(int $id, IpAddressRequest $request): JsonResponse
     {
         try {
             $ipAddress = $this->ipService->update($id, $request->toArray());
@@ -45,7 +45,7 @@ class IpAddressController extends Controller
         }
     }
 
-    public function delete(int $id): JsonResponse
+    public function ipDelete(int $id): JsonResponse
     {
         try {
             $ipAddress = $this->ipService->delete($id);
@@ -64,7 +64,26 @@ class IpAddressController extends Controller
         }
     }
 
-    public function list(): JsonResponse
+    public function ipGet(int $id): JsonResponse
+    {
+        try {
+            $ipAddress = $this->ipService->find($id);
+            return response()->json(
+                [
+                    'success' => true,
+                    'ip_address' => $ipAddress,
+                    'message' => 'IP Addresses successfully retrieved'
+                ]);
+        } catch (Throwable $exception) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => $exception->getMessage()
+                ]);
+        }
+    }
+
+    public function ipList(): JsonResponse
     {
         return response()->json(
             [

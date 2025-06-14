@@ -14,7 +14,7 @@ class IpAddress extends Model
     protected $fillable = [
         'label',
         'ip_address',
-        'comment',
+        'comments',
         'added_by_user_id',
         'updated_by_user_id',
     ];

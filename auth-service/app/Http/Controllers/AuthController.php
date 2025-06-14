@@ -25,7 +25,7 @@ class AuthController extends Controller
      * @param AuthRegisterRequest $request
      * @return JsonResponse
      */
-    public function postRegister(AuthRegisterRequest $request): JsonResponse
+    public function authRegister(AuthRegisterRequest $request): JsonResponse
     {
         $user = $this->authService->createUser($request->toArray());
         return response()->json(
@@ -40,7 +40,7 @@ class AuthController extends Controller
      * @param AuthLoginRequest $request
      * @return JsonResponse
      */
-    public function postLogin(AuthLoginRequest $request): JsonResponse
+    public function authLogin(AuthLoginRequest $request): JsonResponse
     {
         if (!$token = auth()->attempt($request->toArray())) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -64,7 +64,7 @@ class AuthController extends Controller
     /**
      * @return JsonResponse
      */
-    public function postLogout(): JsonResponse
+    public function authLogout(): JsonResponse
     {
         auth()->logout(true);
         return response()->json(['message' => 'Successfully logged out']);
@@ -73,7 +73,7 @@ class AuthController extends Controller
     /**
      * @return JsonResponse
      */
-    public function postVerify(): JsonResponse
+    public function authVerify(): JsonResponse
     {
         $token = auth()->user();
         if (empty($token)) {
@@ -85,7 +85,7 @@ class AuthController extends Controller
     /**
      * @return JsonResponse
      */
-    public function postRefresh(): JsonResponse
+    public function authRefresh(): JsonResponse
     {
         try {
             return $this->respondWithToken(auth('api')->refresh());

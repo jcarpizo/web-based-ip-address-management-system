@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Interface\GatewayInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 
 class GatewayService implements GatewayInterface
@@ -21,11 +22,14 @@ class GatewayService implements GatewayInterface
                     'Accept-Encoding' => 'gzip',
                     'Accept-Charset' => 'utf-8',
                 ]),
+                'allow_redirects' => true,
                 'query' => $data,
             ]);
             return response()->json(json_decode($response->getBody()->getContents(), true));
         } catch (ClientException $clientException) {
             return response()->json(json_decode($clientException->getResponse()->getBody()->getContents(), true));
+        } catch (GuzzleException $guzzleException) {
+            return response()->json(json_decode($guzzleException->getMessage()), true);
         }
     }
 }

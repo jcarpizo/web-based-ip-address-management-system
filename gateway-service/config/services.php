@@ -32,12 +32,12 @@ return [
     ],
 
     'ip' => [
-        'default' => env('IP_SERVICE_SERVICE', 'http://127.0.0.1:8000'),
-        'prefix' => env('IP_SERVICE_SERVICE_PREFIX', 'ipservice'),
+        'url' => env('IP_SERVICE_SERVICE_URL', 'http://127.0.0.1:8003'),
+        'prefix' => env('IP_SERVICE_SERVICE_PREFIX', 'ip'),
     ],
 
     'auth' => [
-        'url' => env('AUTH_SERVICE_SERVICE', 'http://127.0.0.1:8000'),
+        'url' => env('AUTH_SERVICE_SERVICE_URL', 'http://127.0.0.1:8000'),
         'prefix' => env('AUTH_SERVICE_SERVICE_PREFIX', 'auth'),
     ]
 ];

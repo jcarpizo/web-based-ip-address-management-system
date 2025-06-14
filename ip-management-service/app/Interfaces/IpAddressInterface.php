@@ -13,5 +13,7 @@ interface IpAddressInterface
 
     public function delete(int $id): ?IpAddress;
 
+    public function find(int $id): ?IpAddress;
+
     public function all(): Collection;
 }

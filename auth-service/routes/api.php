@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
-    Route::post('/login', [AuthController::class, 'postLogin'])->name('login');
-    Route::post('/logout', [AuthController::class, 'postLogout'])->name('logout');
+    Route::post('/login', [AuthController::class, 'authLogin'])->name('authLogin');
+    Route::post('/logout', [AuthController::class, 'authLogout'])->name('authLogout');
 
-    Route::post('/register', [AuthController::class, 'postRegister'])->name('register');
-    Route::post('/refresh', [AuthController::class, 'postRefresh'])->name('refresh');
-    Route::post('/verify', [AuthController::class, 'postVerify'])->name('verify');
+    Route::post('/register', [AuthController::class, 'authRegister'])->name('register');
+    Route::post('/refresh', [AuthController::class, 'authRefresh'])->name('refresh');
+    Route::post('/verify', [AuthController::class, 'authVerify'])->name('verify');
 });

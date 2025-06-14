@@ -15,16 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::prefix('ip_service')->group(
+Route::prefix('ip')->group(
     function () {
-        Route::post('/create', [IpAddressController::class, 'create'])->name('ip_create');
-        Route::get('/list', [IpAddressController::class, 'list'])->name('ip_list');
-        Route::put('/update/{id}', [IpAddressController::class, 'update'])->name('ip_update');
-        Route::put('/delete/{id}', [IpAddressController::class, 'delete'])->name('ip_delete');
+        Route::post('/create', [IpAddressController::class, 'ipCreate'])->name('ipCreate');
+        Route::put('/update/{id}', [IpAddressController::class, 'ipUpdate'])->name('ipUpdate');
+        Route::get('/get/{id}', [IpAddressController::class, 'ipGet'])->name('ipGet');
+        Route::get('/list', [IpAddressController::class, 'ipList'])->name('ipList');
+        Route::delete('/delete/{id}', [IpAddressController::class, 'ipDelete'])->name('ipDelete');
     }
 );
 
