@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\Rule;
 
 class IpAddressRequest extends FormRequest
 {
@@ -20,15 +21,19 @@ class IpAddressRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'label' => 'required',
-            'ip_address' => 'required|unique:ip_addresses,ip_address',
-            'added_by_user_id' => 'required',
-            'updated_by_user_id' => 'required',
+            'label' => 'required|string',
+            'ip_address' => [
+                'required',
+                'ip',
+                Rule::unique('ip_addresses')->ignore($this->route('id')),
+            ],
+            'added_by_user_id' => 'required|integer',
+            'updated_by_user_id' => 'required|integer',
         ];
     }
 

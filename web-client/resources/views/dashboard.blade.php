@@ -11,43 +11,12 @@
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">IP Address Audit Logs</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">User Login Audit Logs</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <main class="flex-shrink-0">
-    <div class="container">
-        <table class="table mt-5 small">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">IP Address</th>
-                <th scope="col">Comment</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>John</td>
-                <td>Doe</td>
-                <td>@social</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <div id="ip-management-system-dashboard"></div>
 </main>

@@ -41,7 +41,7 @@ class IpAddressController extends Controller
                 [
                     'success' => false,
                     'message' => $exception->getMessage()
-                ]);
+                ],422);
         }
     }
 

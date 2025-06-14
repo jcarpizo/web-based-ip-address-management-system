@@ -37,7 +37,7 @@ class IpAddressRepository implements IpAddressInterface
 
     public function all(): Collection
     {
-        return IpAddress::all();
+        return IpAddress::orderBy('updated_at', 'desc')->get();
     }
 
     /**
