@@ -1,11 +1,18 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import api from "../api/axiosInstance.js";
+import {useLocation, useNavigate} from "react-router-dom";
 
-export const AuthenticationProvider = createContext({ user: null, setUser: () => {} });
+export const AuthenticationProvider = createContext({
+    user: null, setUser: () => {
+    }
+});
 
-export function AuthProvider({ children }) {
-    const [user, setUser]     = useState(null);
+export function AuthProvider({children}) {
+    const [user, setUser] = useState(null);
     const [checking, setChecking] = useState(true);
+
+    const {pathname} = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -16,6 +23,11 @@ export function AuthProvider({ children }) {
                 if (!res.data.error) {
                     localStorage.setItem('user', JSON.stringify(res.data));
                     setUser(res.data);
+
+                    if (pathname === '/login') {
+                        navigate('/dashboard', {replace: true});
+                    }
+
                     return;
                 }
 
@@ -34,6 +46,10 @@ export function AuthProvider({ children }) {
                 localStorage.removeItem('access_token');
                 setUser(null);
 
+                if (pathname !== '/login') {
+                    navigate('/login', {replace: true});
+                }
+
             } catch (e) {
                 localStorage.removeItem('access_token');
                 setUser(null);
@@ -46,7 +62,7 @@ export function AuthProvider({ children }) {
 
     if (checking) return <div>Checking authentication…</div>;
     return (
-        <AuthenticationProvider.Provider value={{ user, setUser }}>
+        <AuthenticationProvider.Provider value={{user, setUser}}>
             {children}
         </AuthenticationProvider.Provider>
     );

@@ -49,6 +49,13 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (User $user) {
+            $user->email_verified_at = $user->freshTimestamp();
+        });
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

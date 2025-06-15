@@ -36,18 +36,26 @@ export default function IpManagementDashboard() {
     }, [fetchIpAddresses]);
 
     const openModal = (ip = null) => {
+
+        const stored = localStorage.getItem('user');
+        const userId = stored ? JSON.parse(stored).id : '';
+
         if (ip) {
             setEditingId(ip.id);
             setForm({
                 label: ip.label,
                 ip_address: ip.ip_address,
                 comments: ip.comments,
-                added_by_user_id: ip.added_by_user_id,
-                updated_by_user_id: ip.updated_by_user_id,
+                added_by_user_id: userId,
+                updated_by_user_id: userId,
             });
         } else {
             setEditingId(null);
-            setForm(initialForm);
+            setForm({
+                ...initialForm,
+                added_by_user_id: userId,         // set both to current user
+                updated_by_user_id: userId,
+            });
             setErrors({});
         }
         setShowModal(true);
@@ -205,17 +213,9 @@ export default function IpManagementDashboard() {
                                             onChange={handleChange}
                                         />
                                     </div>
-                                    <div className="d-none">
-                                        <input name="added_by_user_id" value={form.added_by_user_id} onChange={handleChange} />
-                                        <input name="updated_by_user_id" value={form.updated_by_user_id} onChange={handleChange} />
-                                    </div>
                                     {errors.ip_address && <div className="text-danger">{errors.ip_address[0]}</div>}
                                 </div>
                                 <div className="modal-footer">
-                                    <input type="text" value={form.added_by_user_id}
-                                           onChange={e => setForm({...form, added_by_user_id: e.target.value})}/>
-                                    <input type="text" value={form.updated_by_user_id}
-                                           onChange={e => setForm({...form, updated_by_user_id: e.target.value})}/>
 
                                     <button type="button" className="btn btn-secondary" onClick={closeModal}>
                                         Cancel
