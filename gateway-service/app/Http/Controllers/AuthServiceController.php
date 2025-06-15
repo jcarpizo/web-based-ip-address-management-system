@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GatewayRequest;
 use App\Interface\GatewayInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;

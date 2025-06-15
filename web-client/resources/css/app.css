@@ -1,1 +1,4 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+main > .container {
+    padding: 60px 15px 0;
+}

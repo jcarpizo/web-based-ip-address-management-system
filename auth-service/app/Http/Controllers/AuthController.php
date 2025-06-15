@@ -55,6 +55,7 @@ class AuthController extends Controller
     private function respondWithToken($token): JsonResponse
     {
         return response()->json([
+            'success' => true,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
@@ -77,7 +78,11 @@ class AuthController extends Controller
     {
         $token = auth()->user();
         if (empty($token)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(
+                [
+                    'message' => 'token has already expired',
+                    'error' => 'Unauthorized'
+                ], 401);
         }
         return response()->json($token);
     }
