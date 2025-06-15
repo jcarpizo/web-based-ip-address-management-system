@@ -15,5 +15,5 @@ interface IpAddressInterface
 
     public function find(int $id): ?IpAddress;
 
-    public function all(): Collection;
+    public function all(?int $currentUserId): Collection;
 }

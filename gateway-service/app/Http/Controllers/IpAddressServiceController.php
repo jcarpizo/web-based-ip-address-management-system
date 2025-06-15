@@ -25,9 +25,9 @@ class IpAddressServiceController extends Controller
         return $this->gatewayService->serverRequest('GET',   $this->getServiceUrl() . '/api/ip/get/'. $id);
     }
 
-    public function ipList(): JsonResponse
+    public function ipList(?int $userId = null): JsonResponse
     {
-        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/list');
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/list/'. $userId);
     }
 
     public function ipUpdate(int $id, Request $request): JsonResponse

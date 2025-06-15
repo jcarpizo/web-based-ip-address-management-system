@@ -9,6 +9,11 @@ const initialForm = {
     updated_by_user_id: '',
 };
 
+const getCurrentUserId = () => {
+    const stored = localStorage.getItem('user');
+    return stored ? JSON.parse(stored).id : null;
+};
+
 export default function IpManagementDashboard() {
     const [ipAddresses, setIpAddresses] = useState([]);
     const [form, setForm] = useState(initialForm);
@@ -23,8 +28,11 @@ export default function IpManagementDashboard() {
     };
 
     const fetchIpAddresses = useCallback(async () => {
+
+        const userId = getCurrentUserId();
+
         try {
-            const { data } = await api.get('/ip/list');
+            const { data } = await api.get('/ip/list/' + userId);
             setIpAddresses(data.ip_address || []);
         } catch {
             showAlert('danger', 'Failed to load data.');
@@ -37,8 +45,7 @@ export default function IpManagementDashboard() {
 
     const openModal = (ip = null) => {
 
-        const stored = localStorage.getItem('user');
-        const userId = stored ? JSON.parse(stored).id : '';
+        const userId = getCurrentUserId();
 
         if (ip) {
             setEditingId(ip.id);

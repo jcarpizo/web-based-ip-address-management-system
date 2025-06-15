@@ -35,9 +35,13 @@ class IpAddressRepository implements IpAddressInterface
         return $ipAddress;
     }
 
-    public function all(): Collection
+    public function all(?int $currentUserId): Collection
     {
-        return IpAddress::orderBy('updated_at', 'desc')->get();
+        $ipAddress =  IpAddress::orderBy('updated_at', 'desc');
+        if (!empty($currentUserId)) {
+            $ipAddress->where('added_by_user_id', $currentUserId);
+        }
+        return $ipAddress->get();
     }
 
     /**

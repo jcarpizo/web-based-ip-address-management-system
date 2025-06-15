@@ -83,12 +83,12 @@ class IpAddressController extends Controller
         }
     }
 
-    public function ipList(): JsonResponse
+    public function ipList(?int $currentUserId = null): JsonResponse
     {
         return response()->json(
             [
                 'success' => true,
-                'ip_address' => $this->ipService->all(),
+                'ip_address' => $this->ipService->all($currentUserId),
                 'message' => 'IP Addresses successfully retrieved'
             ]);
     }

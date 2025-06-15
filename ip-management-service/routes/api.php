@@ -20,7 +20,7 @@ Route::prefix('ip')->group(
         Route::post('/create', [IpAddressController::class, 'ipCreate'])->name('ipCreate');
         Route::put('/update/{id}', [IpAddressController::class, 'ipUpdate'])->name('ipUpdate');
         Route::get('/get/{id}', [IpAddressController::class, 'ipGet'])->name('ipGet');
-        Route::get('/list', [IpAddressController::class, 'ipList'])->name('ipList');
+        Route::get('/list/{id?}', [IpAddressController::class, 'ipList'])->name('ipList');
         Route::delete('/delete/{id}', [IpAddressController::class, 'ipDelete'])->name('ipDelete');
     }
 );

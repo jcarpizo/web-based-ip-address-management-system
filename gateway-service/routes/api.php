@@ -35,6 +35,6 @@ Route::group(['prefix' => 'ip'], function () {
     Route::post('/create', [IpAddressServiceController::class, 'ipCreate'])->name('ipCreate');
     Route::put('/update/{id}', [IpAddressServiceController::class, 'ipUpdate'])->name('ipUpdate');
     Route::get('/get/{id}', [IpAddressServiceController::class, 'ipGet'])->name('ipGet');
-    Route::get('/list', [IpAddressServiceController::class, 'ipList'])->name('ipList');
+    Route::get('/list/{userId?}', [IpAddressServiceController::class, 'ipList'])->name('ipList');
     Route::delete('/delete/{id}', [IpAddressServiceController::class, 'ipDelete'])->name('ipDelete');
 });
