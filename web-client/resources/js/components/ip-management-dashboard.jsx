@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import api from '../api/axiosInstance.js';
+import { formatDate } from '../utils/date';
 
 const initialForm = {
     label: '',
@@ -156,9 +157,9 @@ export default function IpManagementDashboard() {
                         <td>{ip.label}</td>
                         <td>{ip.ip_address}</td>
                         <td>{ip.comments}</td>
-                        <td>{ip.created_at}</td>
+                        <td>{ formatDate(ip.created_at) }</td>
                         <td>{ip.added_by_user_id}</td>
-                        <td>{ip.updated_at}</td>
+                        <td>{ formatDate(ip.updated_at) }</td>
                         <td>{ip.updated_by_user_id}</td>
                         <td>
                             <div className="btn-group">
