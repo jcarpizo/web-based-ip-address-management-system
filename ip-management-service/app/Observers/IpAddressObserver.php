@@ -17,14 +17,17 @@ class IpAddressObserver
         $this->log($ipAddress, 'updated');
     }
 
+    public function deleted(IpAddress $ipAddress): void
+    {
+        $this->log($ipAddress, 'deleted');
+    }
+
     private function log(IPAddress $model, string $event): void
     {
-        $old = $event === 'updated' ? json_encode($model->getOriginal()) : null;
-
-        $new = json_encode($model->getAttributes());
+        $old = $event === 'updated' ? json_encode($model->getOriginal()) : ($event == 'deleted' ? json_encode($model->getAttributes()) : null);
+        $new = $event === 'deleted' ? null : json_encode($model->getAttributes());
 
         IpAddressLogs::create([
-            'user_id'        => 1,
             'ip_address_id'  => $model->id,
             'event'          => $event,
             'old_value'      => $old,

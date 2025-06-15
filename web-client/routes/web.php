@@ -25,3 +25,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/ip-audit-logs', function () {
+    return view('ip-address-logs');
+});
+

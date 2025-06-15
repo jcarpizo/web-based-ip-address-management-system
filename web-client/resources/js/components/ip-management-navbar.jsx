@@ -37,7 +37,8 @@ export default function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                        <li className="nav-item"><a className="nav-link" href="#">IP Address Audit Logs</a></li>
+                        <li className="nav-item"><a className="nav-link" href="/dashboard">Home</a></li>
+                        <li className="nav-item"><a className="nav-link" href="/ip-audit-logs">IP Address Audit Logs</a></li>
                         <li className="nav-item"><a className="nav-link" href="#">User Login Audit Logs</a></li>
                         <li className="nav-item">
                             <button className="nav-link btn btn-link" onClick={handleLogout}>

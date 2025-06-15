@@ -37,4 +37,5 @@ Route::group(['prefix' => 'ip'], function () {
     Route::get('/get/{id}', [IpAddressServiceController::class, 'ipGet'])->name('ipGet');
     Route::get('/list/{userId?}', [IpAddressServiceController::class, 'ipList'])->name('ipList');
     Route::delete('/delete/{id}', [IpAddressServiceController::class, 'ipDelete'])->name('ipDelete');
+    Route::get('/logs', [IpAddressServiceController::class, 'ipLogs'])->name('ipLogs');
 });

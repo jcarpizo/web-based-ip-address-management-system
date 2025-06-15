@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IpAddressRequest;
 use App\Interfaces\IpAddressInterface;
+use App\Interfaces\IpAddressLogsInterface;
 use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class IpAddressController extends Controller
 {
     private IpAddressInterface $ipService;
+    private IpAddressLogsInterface $ipLogsService;
 
-    public function __construct(IpAddressInterface $ipService) {
+    public function __construct(IpAddressInterface $ipService, IpAddressLogsInterface $ipLogsService) {
         $this->ipService = $ipService;
+        $this->ipLogsService = $ipLogsService;
     }
 
     public function ipCreate(IPAddressRequest $request): JsonResponse
@@ -90,6 +93,16 @@ class IpAddressController extends Controller
                 'success' => true,
                 'ip_address' => $this->ipService->all($currentUserId),
                 'message' => 'IP Addresses successfully retrieved'
+            ]);
+    }
+
+    public function ipLogList(): JsonResponse
+    {
+        return response()->json(
+            [
+                'success' => true,
+                'ip_address_logs' => $this->ipLogsService->all(),
+                'message' => 'IP Addresses Logs successfully retrieved'
             ]);
     }
 }

@@ -10,7 +10,6 @@ class IpAddressLogs extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'ip_address_id',
         'event',
         'old_value',

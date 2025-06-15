@@ -40,6 +40,11 @@ class IpAddressServiceController extends Controller
         return $this->gatewayService->serverRequest('DELETE', $this->getServiceUrl() . '/api/ip/delete/'. $id);
     }
 
+    public function ipLogs(): JsonResponse
+    {
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/logs');
+    }
+
     private function getServiceUrl(): string
     {
         return Config::get('services.ip.url');

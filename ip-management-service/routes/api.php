@@ -22,6 +22,7 @@ Route::prefix('ip')->group(
         Route::get('/get/{id}', [IpAddressController::class, 'ipGet'])->name('ipGet');
         Route::get('/list/{id?}', [IpAddressController::class, 'ipList'])->name('ipList');
         Route::delete('/delete/{id}', [IpAddressController::class, 'ipDelete'])->name('ipDelete');
+        Route::get('/logs', [IpAddressController::class, 'ipLogList'])->name('ipLogList');
     }
 );
 
