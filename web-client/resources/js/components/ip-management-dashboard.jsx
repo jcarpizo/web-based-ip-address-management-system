@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import api from '../api/axiosInstance.js';
 import { formatDate } from '../utils/date';
+import {getCurrentUser} from "../utils/auth.js";
 
 const initialForm = {
     label: '',
@@ -8,11 +9,6 @@ const initialForm = {
     comments: '',
     added_by_user_id: '',
     updated_by_user_id: '',
-};
-
-const getCurrentUserId = () => {
-    const stored = localStorage.getItem('user');
-    return stored ? JSON.parse(stored).id : null;
 };
 
 export default function IpManagementDashboard() {
@@ -30,10 +26,10 @@ export default function IpManagementDashboard() {
 
     const fetchIpAddresses = useCallback(async () => {
 
-        const userId = getCurrentUserId();
+        const userId = (getCurrentUser()?.roles === 'user' ? getCurrentUser()?.id : '') ;
 
         try {
-            const { data } = await api.get('/ip/list/' + userId);
+            const { data } = await api.get('/ip/list');
             setIpAddresses(data.ip_address || []);
         } catch {
             showAlert('danger', 'Failed to load data.');
@@ -46,7 +42,7 @@ export default function IpManagementDashboard() {
 
     const openModal = (ip = null) => {
 
-        const userId = getCurrentUserId();
+        const userId = getCurrentUser()?.id;
 
         if (ip) {
             setEditingId(ip.id);
@@ -166,9 +162,14 @@ export default function IpManagementDashboard() {
                                 <button className="btn btn-sm btn-secondary" onClick={() => openModal(ip)}>
                                     Edit
                                 </button>
-                                <button className="btn btn-sm btn-warning" onClick={() => handleDelete(ip.id)}>
-                                    Delete
-                                </button>
+                                {getCurrentUser()?.roles === 'admin' && (
+                                    <button
+                                        className="btn btn-sm btn-warning"
+                                        onClick={() => handleDelete(ip.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                )}
                             </div>
                         </td>
                     </tr>

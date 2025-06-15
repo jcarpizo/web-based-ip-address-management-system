@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import {AuthenticationProvider} from "../auth/AuthenticationProvider.jsx";
 import { useNavigate }   from 'react-router-dom';
 import api from "../api/axiosInstance.js";
+import {getCurrentUser} from "../utils/auth.js";
 
 export default function Navbar() {
     const { user, setUser, checking } = useContext(AuthenticationProvider);
@@ -38,8 +39,12 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         <li className="nav-item"><a className="nav-link" href="/dashboard">Home</a></li>
-                        <li className="nav-item"><a className="nav-link" href="/ip-audit-logs">IP Address Audit Logs</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#">User Login Audit Logs</a></li>
+                        {getCurrentUser()?.roles === 'admin' && (
+                            <li className="nav-item"><a className="nav-link" href="/ip-audit-logs">IP Address Audit Logs</a></li>
+                         )}
+                        {getCurrentUser()?.roles === 'admin' && (
+                            <li className="nav-item"><a className="nav-link" href="#">User Login Audit Logs</a></li>
+                        )}
                         <li className="nav-item">
                             <button className="nav-link btn btn-link" onClick={handleLogout}>
                                 Logout

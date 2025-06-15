@@ -19,14 +19,12 @@ export default function RegisterModal() {
 
     const handleChange = e => {
         setForm({ ...form, [e.target.name]: e.target.value });
-        // clear general errors on any change
         setError('');
         setSuccess('');
     };
 
     const handleSubmit = async e => {
         e.preventDefault();
-        // extra guard, though button is disabled when mismatch
         if (passwordsMismatch) {
             setError('Passwords do not match');
             return;
