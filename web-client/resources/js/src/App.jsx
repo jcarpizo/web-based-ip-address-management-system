@@ -9,6 +9,7 @@ import IpManagementDashboard from "../components/ip-management-dashboard.jsx";
 import Navbar from "../components/ip-management-navbar.jsx";
 import IpManagementLogs from "../components/ip-management-logs.jsx";
 import AdminRoute from "../auth/AdminRoute.jsx";
+import AuthManagementLogs from "../components/auth-management-logs.jsx";
 
 export default function App() {
     return (
@@ -22,8 +23,15 @@ export default function App() {
                          <IpManagementLogs/>
                         </AdminRoute>
                     }/>
+                    <Route path="/auth-dashboard-logs" element={
+                        <AdminRoute>
+                            <AuthManagementLogs/>
+                        </AdminRoute>
+                    }/>
                     <Route path="/dashboard" element={
-                        <ProtectedRoute><IpManagementDashboard/></ProtectedRoute>
+                        <ProtectedRoute>
+                            <IpManagementDashboard/>
+                        </ProtectedRoute>
                     }/>
                     <Route path="*" element={<Navigate to="/dashboard" replace />} />
                 </Routes>

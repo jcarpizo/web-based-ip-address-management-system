@@ -43,7 +43,7 @@ export default function Navbar() {
                             <li className="nav-item"><a className="nav-link" href="/ip-audit-logs">IP Address Audit Logs</a></li>
                          )}
                         {getCurrentUser()?.roles === 'admin' && (
-                            <li className="nav-item"><a className="nav-link" href="#">User Login Audit Logs</a></li>
+                            <li className="nav-item"><a className="nav-link" href="/auth-dashboard-logs">User Login Audit Logs</a></li>
                         )}
                         <li className="nav-item">
                             <button className="nav-link btn btn-link" onClick={handleLogout}>

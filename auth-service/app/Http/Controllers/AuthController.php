@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthRegisterRequest;
 use App\Interfaces\AuthInterface;
+use App\Models\UserLogs;
 use Illuminate\Http\JsonResponse;
 use Throwable;
 
@@ -95,7 +96,31 @@ class AuthController extends Controller
         try {
             return $this->respondWithToken(auth('api')->refresh());
         } catch (Throwable) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(
+                [
+                    'message' => 'token has already expired',
+                    'error' => 'Unauthorized'
+                ], 401);
         }
+    }
+
+    public function authUserLogs(): JsonResponse
+    {
+        $token = auth()->user();
+        if (empty($token)) {
+            return response()->json(
+                [
+                    'message' => 'token has already expired',
+                    'error' => 'Unauthorized'
+                ], 401);
+        }
+        return response()->json(
+            [
+                'success' => true,
+                'user_logs' => UserLogs::with('user')
+                    ->orderBy('updated_at', 'desc')
+                    ->get(),
+                'message' => 'User Logs successfully retrieved'
+            ]);
     }
 }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\GatewayRequest;
 use App\Interface\GatewayInterface;
-use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -51,6 +50,13 @@ class AuthServiceController extends Controller
     public function authLogout(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST', $this->getServiceUrl() . '/api/auth/logout',[],[
+            'Authorization' => 'Bearer ' . $request->bearerToken(),
+        ]);
+    }
+
+    public function authUserLogs(Request $request): JsonResponse
+    {
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/auth/logs',[],[
             'Authorization' => 'Bearer ' . $request->bearerToken(),
         ]);
     }

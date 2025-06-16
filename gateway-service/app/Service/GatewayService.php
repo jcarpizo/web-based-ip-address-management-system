@@ -17,6 +17,7 @@ class GatewayService implements GatewayInterface
             $response = $client->request($method, $serverUrl, [
                 'connect_timeout' => 5,
                 'headers' => array_merge($headers, [
+                    'User-Agent' => 'Gateway/1.0',
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                     'Accept-Encoding' => 'gzip',

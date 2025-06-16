@@ -29,3 +29,7 @@ Route::get('/ip-audit-logs', function () {
     return view('ip-address-logs');
 });
 
+Route::get('/auth-dashboard-logs', function () {
+    return view('auth-dashboard-logs');
+});
+
