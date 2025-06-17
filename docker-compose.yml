@@ -1,0 +1,194 @@
+services:
+  #Start:  Auth Microservice
+  auth-db:
+    image: mysql:8.0
+    container_name: auth-micro-service
+    networks:
+      default:
+        aliases:
+          - mysql
+    environment:
+      MYSQL_DATABASE: auth-service-db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: PhpLaravel10Dev
+      MYSQL_ROOT_PASSWORD: PhpLaravel10Dev
+    volumes:
+      - auth-db-data:/var/lib/mysql
+    entrypoint:
+      - bash
+      - -c
+      - |
+        # create+chown in one go, then exec the real entrypoint
+        mkdir -p /var/run/mysql-secure && \
+        chown mysql:mysql /var/run/mysql-secure && \
+        exec docker-entrypoint.sh mysqld    
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_PATH: auth-service
+      APP_PORT: 8000
+      DB_CONNECTION: mysql
+      DB_HOST: auth-db
+      DB_PORT: 3306
+      DB_DATABASE: auth-service-db
+      DB_USERNAME: laravel
+      DB_PASSWORD: PhpLaravel10Dev
+      APP_URL: http://127.0.0.1:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth-db
+    volumes:
+      - ./auth-service:/src/auth-service
+  #End:  Auth Micro Services
+
+
+  #Start: Gateway Microservice
+  gateway-db:
+    image: mysql:8.0
+    container_name: gateway-micro-service
+    networks:
+      default:
+        aliases:
+          - mysql
+    environment:
+      MYSQL_DATABASE: gateway-service-db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: PhpLaravel10Dev
+      MYSQL_ROOT_PASSWORD: PhpLaravel10Dev
+    volumes:
+      - gateway-db-data:/var/lib/mysql
+    entrypoint:
+      - bash
+      - -c
+      - |
+        # create+chown in one go, then exec the real entrypoint
+        mkdir -p /var/run/mysql-secure && \
+        chown mysql:mysql /var/run/mysql-secure && \
+        exec docker-entrypoint.sh mysqld    
+
+  gateway-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_PATH: gateway-service
+      APP_PORT: 8001
+      DB_CONNECTION: mysql
+      DB_HOST: gateway-db
+      DB_PORT: 3306
+      DB_DATABASE: gateway-service-db
+      DB_USERNAME: laravel
+      DB_PASSWORD: PhpLaravel10Dev
+      APP_URL: http://127.0.0.1:8001
+    ports:
+      - "8001:8001"
+    depends_on:
+      - gateway-db
+    volumes:
+      - ./gateway-service:/src/gateway-service
+  #End: Gateway Microservice
+
+
+  #Start: IP Management Microservice
+  ip-mgmt-db:
+    image: mysql:8.0
+    container_name: ip-management-service
+    networks:
+      default:
+        aliases:
+          - mysql
+    environment:
+      MYSQL_DATABASE: ip_management-service-db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: PhpLaravel10Dev
+      MYSQL_ROOT_PASSWORD: PhpLaravel10Dev
+    volumes:
+      - ip-mgmt-db-data:/var/lib/mysql
+    entrypoint:
+      - bash
+      - -c
+      - |
+        # create+chown in one go, then exec the real entrypoint
+        mkdir -p /var/run/mysql-secure && \
+        chown mysql:mysql /var/run/mysql-secure && \
+        exec docker-entrypoint.sh mysqld     
+
+  ip-management-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_PATH: ip-management-service
+      APP_PORT: 8003
+      DB_CONNECTION: mysql
+      DB_HOST: ip-mgmt-db
+      DB_PORT: 3306
+      DB_DATABASE: ip_management-service-db
+      DB_USERNAME: laravel
+      DB_PASSWORD: PhpLaravel10Dev
+      APP_URL: http://127.0.0.1:8003
+    ports:
+      - "8003:8003"
+    depends_on:
+      - ip-mgmt-db
+    volumes:
+      - ./ip-management-service:/src/ip-management-service
+  #End: IP Management Microservice
+
+
+  #Start: Web Client Service
+  web-client-db:
+    image: mysql:8.0
+    container_name: web-client-service
+    networks:
+      default:
+        aliases:
+          - mysql
+    environment:
+      MYSQL_DATABASE: web-client-service-db
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: PhpLaravel10Dev
+      MYSQL_ROOT_PASSWORD: PhpLaravel10Dev
+    volumes:
+      - web-client-db-data:/var/lib/mysql
+    entrypoint:
+      - bash
+      - -c
+      - |
+        # create+chown in one go, then exec the real entrypoint
+        mkdir -p /var/run/mysql-secure && \
+        chown mysql:mysql /var/run/mysql-secure && \
+        exec docker-entrypoint.sh mysqld
+
+  web-client-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_PATH: web-client-service
+      APP_PORT: 8002
+      DB_CONNECTION: mysql
+      DB_HOST:  web-client-db
+      DB_PORT: 3306
+      DB_DATABASE: web-client-service-db
+      DB_USERNAME: laravel
+      DB_PASSWORD: PhpLaravel10Dev
+      APP_URL: http://127.0.0.1:8002
+    ports:
+      - "8002:8002"
+    depends_on:
+      - web-client-db
+    volumes:
+      - ./web-client:/src/web-client-service
+  #End: Web Client Service
+
+
+volumes:
+  auth-db-data:
+  gateway-db-data:
+  web-client-db-data:
+  ip-mgmt-db-data:
