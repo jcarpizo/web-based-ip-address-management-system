@@ -30,6 +30,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/refresh', [AuthServiceController::class, 'authRefreshToken'])->name('authRefreshToken');
     Route::post('/logout', [AuthServiceController::class, 'authLogout'])->name('authLogout');
     Route::get('/logs', [AuthServiceController::class, 'authUserLogs'])->name('authUserLogs');
+    Route::get('/user/{id}', [AuthServiceController::class, 'authUserById'])->name('authUserById');
 });
 
 Route::group(['prefix' => 'ip'], function () {

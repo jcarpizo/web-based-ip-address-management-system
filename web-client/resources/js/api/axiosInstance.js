@@ -40,7 +40,6 @@ api.interceptors.response.use(
 
         if (response && response.status === 401 && !originalRequest._retry) {
             if (isRefreshing) {
-                // queue up the request until the refresh is done
                 return new Promise(function(resolve, reject) {
                     failedQueue.push({ resolve, reject });
                 })
@@ -54,7 +53,6 @@ api.interceptors.response.use(
             originalRequest._retry = true;
             isRefreshing = true;
 
-            // Call your refresh endpoint
             return new Promise((resolve, reject) => {
                 api.post('/auth/refresh')
                     .then(({ data }) => {

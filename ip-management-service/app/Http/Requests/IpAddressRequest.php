@@ -33,7 +33,7 @@ class IpAddressRequest extends FormRequest
                 Rule::unique('ip_addresses')->ignore($this->route('id')),
             ],
             'added_by_user_id' => 'required|integer',
-            'updated_by_user_id' => 'required|integer',
+            'updated_by_user_id' => 'integer',
         ];
     }
 

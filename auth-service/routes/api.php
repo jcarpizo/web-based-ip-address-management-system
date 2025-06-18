@@ -22,4 +22,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/refresh', [AuthController::class, 'authRefresh'])->name('authRefresh');
     Route::post('/verify', [AuthController::class, 'authVerify'])->name('authVerify');
     Route::get('/logs', [AuthController::class, 'authUserLogs'])->name('authUserLogs');
+
+    Route::get('/user/{id}', [AuthController::class, 'authUserById'])->name('authUserById');
 });

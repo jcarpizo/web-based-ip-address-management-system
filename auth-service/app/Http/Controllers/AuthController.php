@@ -123,4 +123,22 @@ class AuthController extends Controller
                 'message' => 'User Logs successfully retrieved'
             ]);
     }
+
+    public function authUserById(int $userId): JsonResponse
+    {
+        $token = auth()->user();
+        if (empty($token)) {
+            return response()->json(
+                [
+                    'message' => 'token has already expired',
+                    'error' => 'Unauthorized'
+                ], 401);
+        }
+        return response()->json(
+            [
+                'success' => true,
+                'user' => $this->authService->getUserById($userId),
+                'message' => 'User successfully retrieved'
+            ]);
+    }
 }

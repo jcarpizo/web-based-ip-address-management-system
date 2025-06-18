@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('ip_address')->comment('ipv4 or ipv6')->nullable(false)->unique();
             $table->string('comments')->comment('notes or comments')->nullable();
             $table->bigInteger('added_by_user_id')->nullable(false);
-            $table->bigInteger('updated_by_user_id')->nullable(false);
+            $table->bigInteger('updated_by_user_id')->nullable(true);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -61,6 +61,13 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    public function authUserById(Request $request, int $userId): JsonResponse
+    {
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/auth/user/'.$userId,[],[
+            'Authorization' => 'Bearer ' . $request->bearerToken(),
+        ]);
+    }
+
     private function getServiceUrl(): string
     {
         return Config::get('services.auth.url');
