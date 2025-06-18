@@ -6,6 +6,7 @@ const api = axios.create({
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'X-API-KEY': '3qohBUb4RJLUduNQ2ArCrokddmtmckl42vZ1g0IN'
     },
     rewrite: path => path.replace(/^\/api/, ''),
 });

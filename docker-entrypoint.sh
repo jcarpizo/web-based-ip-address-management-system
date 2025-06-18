@@ -10,7 +10,7 @@ if [ ! -f .env ]; then
   php artisan key:generate
 fi
 
-until php artisan migrate:refresh --force; do
+until php artisan migrate:fresh --seed --force; do
   echo "Waiting for DB at $DB_HOST:$DB_PORT..."
   sleep 3
 done

@@ -11,24 +11,38 @@ use Throwable;
 class IpAddressController extends Controller
 {
     private IpAddressInterface $ipService;
+
     private IpAddressLogsInterface $ipLogsService;
 
+    /**
+     * @param IpAddressInterface $ipService
+     * @param IpAddressLogsInterface $ipLogsService
+     */
     public function __construct(IpAddressInterface $ipService, IpAddressLogsInterface $ipLogsService) {
         $this->ipService = $ipService;
         $this->ipLogsService = $ipLogsService;
     }
 
+    /**
+     * @param IpAddressRequest $request
+     * @return JsonResponse
+     */
     public function ipCreate(IPAddressRequest $request): JsonResponse
     {
         $ipAddress = $this->ipService->create($request->toArray());
         return response()->json(
             [
                 'success' => true,
-                'data' => $ipAddress,
+                'ip_address' => $ipAddress,
                 'message' => 'IP Address successfully created'
             ]);
     }
 
+    /**
+     * @param int $id
+     * @param IpAddressRequest $request
+     * @return JsonResponse
+     */
     public function ipUpdate(int $id, IpAddressRequest $request): JsonResponse
     {
         try {
@@ -40,14 +54,14 @@ class IpAddressController extends Controller
                     'message' => 'IP Address successfully updated'
                 ]);
         } catch (Throwable $exception) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => $exception->getMessage()
-                ],422);
+            return $this->ipErrorResponse($exception);
         }
     }
 
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
     public function ipDelete(int $id): JsonResponse
     {
         try {
@@ -59,14 +73,14 @@ class IpAddressController extends Controller
                     'message' => 'IP Address successfully deleted'
                 ]);
         } catch (Throwable $exception) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => $exception->getMessage()
-                ]);
+            return $this->ipErrorResponse($exception);
         }
     }
 
+    /**
+     * @param int $id
+     * @return JsonResponse
+     */
     public function ipGet(int $id): JsonResponse
     {
         try {
@@ -78,14 +92,14 @@ class IpAddressController extends Controller
                     'message' => 'IP Addresses successfully retrieved'
                 ]);
         } catch (Throwable $exception) {
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => $exception->getMessage()
-                ]);
+            return $this->ipErrorResponse($exception);
         }
     }
 
+    /**
+     * @param int|null $currentUserId
+     * @return JsonResponse
+     */
     public function ipList(?int $currentUserId = null): JsonResponse
     {
         return response()->json(
@@ -96,6 +110,9 @@ class IpAddressController extends Controller
             ]);
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function ipLogList(): JsonResponse
     {
         return response()->json(
@@ -104,5 +121,19 @@ class IpAddressController extends Controller
                 'ip_address_logs' => $this->ipLogsService->all(),
                 'message' => 'IP Addresses Logs successfully retrieved'
             ]);
+    }
+
+    /**
+     * @param Throwable $exception
+     * @return JsonResponse
+     */
+    public function ipErrorResponse(Throwable $exception): JsonResponse
+    {
+        return response()->json(
+            [
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ]
+        );
     }
 }

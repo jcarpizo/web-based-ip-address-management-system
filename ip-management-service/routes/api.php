@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('ip')->group(
+Route::middleware('ip.apikey')->prefix('ip')->group(
     function () {
         Route::post('/create', [IpAddressController::class, 'ipCreate'])->name('ipCreate');
         Route::put('/update/{id}', [IpAddressController::class, 'ipUpdate'])->name('ipUpdate');

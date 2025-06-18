@@ -44,7 +44,7 @@ class AuthController extends Controller
     public function authLogin(AuthLoginRequest $request): JsonResponse
     {
         if (!$token = auth()->attempt($request->toArray())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return $this->unAuthorisedUser();
         }
         return $this->respondWithToken($token);
     }
@@ -79,11 +79,7 @@ class AuthController extends Controller
     {
         $token = auth()->user();
         if (empty($token)) {
-            return response()->json(
-                [
-                    'message' => 'token has already expired',
-                    'error' => 'Unauthorized'
-                ], 401);
+            return $this->unAuthorisedUser();
         }
         return response()->json($token);
     }
@@ -108,11 +104,7 @@ class AuthController extends Controller
     {
         $token = auth()->user();
         if (empty($token)) {
-            return response()->json(
-                [
-                    'message' => 'token has already expired',
-                    'error' => 'Unauthorized'
-                ], 401);
+            return $this->unAuthorisedUser();
         }
         return response()->json(
             [
@@ -128,11 +120,7 @@ class AuthController extends Controller
     {
         $token = auth()->user();
         if (empty($token)) {
-            return response()->json(
-                [
-                    'message' => 'token has already expired',
-                    'error' => 'Unauthorized'
-                ], 401);
+            return $this->unAuthorisedUser();
         }
         return response()->json(
             [
@@ -140,5 +128,10 @@ class AuthController extends Controller
                 'user' => $this->authService->getUserById($userId),
                 'message' => 'User successfully retrieved'
             ]);
+    }
+
+    private function unAuthorisedUser(): JsonResponse
+    {
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 }

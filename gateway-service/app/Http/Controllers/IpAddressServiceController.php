@@ -17,32 +17,44 @@ class IpAddressServiceController extends Controller
 
     public function ipCreate(Request $request): JsonResponse
     {
-        return $this->gatewayService->serverRequest('POST',   $this->getServiceUrl() . '/api/ip/create', $request->toArray());
+        return $this->gatewayService->serverRequest('POST',   $this->getServiceUrl() . '/api/ip/create', $request->toArray(),[
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
-    public function ipGet(int $id): JsonResponse
+    public function ipGet(Request $request, int $id): JsonResponse
     {
-        return $this->gatewayService->serverRequest('GET',   $this->getServiceUrl() . '/api/ip/get/'. $id);
+        return $this->gatewayService->serverRequest('GET',   $this->getServiceUrl() . '/api/ip/get/'. $id, [], [
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
-    public function ipList(?int $userId = null): JsonResponse
+    public function ipList(Request $request, ?int $userId = null): JsonResponse
     {
-        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/list/'. $userId);
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/list/'. $userId, [], [
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
-    public function ipUpdate(int $id, Request $request): JsonResponse
+    public function ipUpdate(Request $request, int $id): JsonResponse
     {
-        return $this->gatewayService->serverRequest('PUT', $this->getServiceUrl()  . '/api/ip/update/'. $id, $request->toArray());
+        return $this->gatewayService->serverRequest('PUT', $this->getServiceUrl()  . '/api/ip/update/'. $id, $request->toArray(), [
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
-    public function ipDelete(int $id): JsonResponse
+    public function ipDelete(Request $request, int $id): JsonResponse
     {
-        return $this->gatewayService->serverRequest('DELETE', $this->getServiceUrl() . '/api/ip/delete/'. $id);
+        return $this->gatewayService->serverRequest('DELETE', $this->getServiceUrl() . '/api/ip/delete/'. $id, [], [
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
-    public function ipLogs(): JsonResponse
+    public function ipLogs(Request $request): JsonResponse
     {
-        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/logs');
+        return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/logs', [], [
+            'X-API-KEY' => $request->header('X-API-KEY'),
+        ]);
     }
 
     private function getServiceUrl(): string

@@ -13,23 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
-Route::get('/ip-audit-logs', function () {
-    return view('ip-address-logs');
-});
-
-Route::get('/auth-dashboard-logs', function () {
-    return view('auth-dashboard-logs');
-});
-
+Route::view('/', 'welcome');
+Route::view('/login', 'login');
+Route::view('/dashboard', 'dashboard');
+Route::view('/ip-audit-logs', 'ip-address-logs');
+Route::view('/auth-dashboard-logs', 'auth-dashboard-logs');
