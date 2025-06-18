@@ -3,10 +3,6 @@ services:
   auth-db:
     image: mysql:8.0
     container_name: auth-micro-service
-    networks:
-      default:
-        aliases:
-          - mysql
     environment:
       MYSQL_DATABASE: auth-service-db
       MYSQL_USER: laravel
@@ -50,10 +46,6 @@ services:
   gateway-db:
     image: mysql:8.0
     container_name: gateway-micro-service
-    networks:
-      default:
-        aliases:
-          - mysql
     environment:
       MYSQL_DATABASE: gateway-service-db
       MYSQL_USER: laravel
@@ -97,10 +89,6 @@ services:
   ip-mgmt-db:
     image: mysql:8.0
     container_name: ip-management-service
-    networks:
-      default:
-        aliases:
-          - mysql
     environment:
       MYSQL_DATABASE: ip_management-service-db
       MYSQL_USER: laravel
@@ -144,10 +132,6 @@ services:
   web-client-db:
     image: mysql:8.0
     container_name: web-client-service
-    networks:
-      default:
-        aliases:
-          - mysql
     environment:
       MYSQL_DATABASE: web-client-service-db
       MYSQL_USER: laravel
