@@ -24,14 +24,22 @@ class IpAddressObserver
 
     private function log(IPAddress $model, string $event): void
     {
-        $old = $event === 'updated' ? json_encode($model->getOriginal()) : ($event == 'deleted' ? json_encode($model->getAttributes()) : null);
-        $new = $event === 'deleted' ? null : json_encode($model->getAttributes());
+        $oldValues = [
+            'label' => $model->getOriginal('label'),
+            'comments' => $model->getOriginal('comments'),
+            'ip_address' => $model->getOriginal('ip_address'),
+        ];
+        $newValues = $model->only('label', 'comments', 'ip_address');
+
+        $old = $event === 'updated' ? json_encode($oldValues) : ($event == 'deleted' ? json_encode($oldValues) : null);
+        $new = $event === 'deleted' ? null : json_encode($newValues);
 
         IpAddressLogs::create([
-            'ip_address_id'  => $model->id,
             'event'          => $event,
             'old_value'      => $old,
             'new_value'      => $new,
+            'added_by_user_id' =>  $model->only('added_by_user_id')['added_by_user_id'],
+            'updated_by_user_id' =>  $model->only('updated_by_user_id')['updated_by_user_id'],
         ]);
     }
 }

@@ -13,17 +13,12 @@ return new class extends Migration
     {
         Schema::create('ip_address_logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('ip_address_id');
             $table->string('event');               // created, updated, deleted
             $table->text('old_value')->nullable();
             $table->text('new_value')->nullable();
+            $table->bigInteger('added_by_user_id')->nullable(true);
+            $table->bigInteger('updated_by_user_id')->nullable(true);
             $table->timestamps();
-
-            $table->foreign('ip_address_id')
-                ->references('id')
-                ->on('ip_addresses')
-                ->onDelete('cascade');
         });
     }
 

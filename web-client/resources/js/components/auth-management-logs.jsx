@@ -30,7 +30,7 @@ export default function AuthManagementLogs() {
                     <th>Action Event</th>
                     <th>User Agent</th>
                     <th>Ip Address</th>
-                    <th>Created At</th>
+                    <th>Created Date</th>
                 </tr>
                 </thead>
                 <tbody>

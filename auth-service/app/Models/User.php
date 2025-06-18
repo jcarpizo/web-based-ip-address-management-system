@@ -32,6 +32,9 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password',
+        'email_verified_at',
+        'created_at',
+        'updated_at',
     ];
 
     public function setPasswordAttribute($value)

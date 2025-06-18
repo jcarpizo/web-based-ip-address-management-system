@@ -4,12 +4,33 @@ import { formatDate } from '../utils/date';
 
 export default function IpManagementLogs() {
     const [ipAddresses, setIpAddresses] = useState([]);
+    const [userMap, setUserMap] = useState({});
 
     useEffect(() => {
         const fetchIpAddressesLogs = async () => {
             try {
                 const { data } = await api.get(`/ip/logs`);
-                setIpAddresses(data.ip_address_logs || []);
+                const ips = data.ip_address_logs || [];
+
+                const uniqueIds = Array.from(
+                    new Set(ips.flatMap(({ added_by_user_id, updated_by_user_id }) => [added_by_user_id, updated_by_user_id]))
+                );
+
+                const map = {};
+                await Promise.all(
+                    uniqueIds.map(async (id) => {
+                        try {
+                            const res = await api.get(`/auth/user/${id}`);
+                            map[id] = res.data.user.name;
+                        } catch {
+                            map[id] = `#${id}`;
+                        }
+                    })
+                );
+
+                setUserMap(map);
+                setIpAddresses(ips);
+
             } catch (error) {
                 console.error('Failed to load IP addresses Logs', error);
             }
@@ -27,8 +48,11 @@ export default function IpManagementLogs() {
                     <th>Old Values</th>
                     <th>New Values</th>
                     <th>Trigger Events</th>
-                    <th>Updated Date</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
                     <th>Updated By</th>
+                    <th>Updated Date</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -46,7 +70,9 @@ export default function IpManagementLogs() {
                             </pre>
                         </td>
                         <td><span>{ip.event}</span></td>
+                        <td>{userMap[ip.added_by_user_id] || ip.added_by_user_id}</td>
                         <td>{formatDate(ip.created_at)}</td>
+                        <td>{userMap[ip.updated_by_user_id] || ip.updated_by_user_id}</td>
                         <td>{formatDate(ip.updated_at)}</td>
                     </tr>
                 ))}

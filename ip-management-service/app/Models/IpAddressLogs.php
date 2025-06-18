@@ -10,9 +10,10 @@ class IpAddressLogs extends Model
     use HasFactory;
 
     protected $fillable = [
-        'ip_address_id',
         'event',
         'old_value',
         'new_value',
+        'added_by_user_id',
+        'updated_by_user_id',
     ];
 }

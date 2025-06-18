@@ -213,23 +213,23 @@ export default function IpManagementDashboard() {
     };
 
     return (
-        <div className="container mx-auto p-4">
+        <div >
             <br/><br/><br/>
             <button className="btn btn-success mb-3" onClick={() => openModal()}>
                 + New IP Address
             </button>
 
-            <table className="table small">
+            <table className="table small table-striped">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Label</th>
                     <th>IP Address</th>
                     <th>Comment</th>
-                    <th>Created Date</th>
                     <th>Created By</th>
-                    <th>Updated Date</th>
+                    <th>Created Date</th>
                     <th>Updated By</th>
+                    <th>Updated Date</th>
                     <th />
                 </tr>
                 </thead>
@@ -240,10 +240,10 @@ export default function IpManagementDashboard() {
                         <td>{ip.label}</td>
                         <td>{ip.ip_address}</td>
                         <td>{ip.comments}</td>
-                        <td>{formatDate(ip.created_at)}</td>
                         <td>{userMap[ip.added_by_user_id] || ip.added_by_user_id}</td>
-                        <td>{formatDate(ip.updated_at)}</td>
+                        <td>{formatDate(ip.created_at)}</td>
                         <td>{userMap[ip.updated_by_user_id] || ip.updated_by_user_id}</td>
+                        <td>{formatDate(ip.updated_at)}</td>
                         <td>
                             <div className="btn-group">
                                 <button
