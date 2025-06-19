@@ -19,16 +19,16 @@ The system is built with four components using the Laravel framework:
 
 - **Auth Service** – Handles authentication with JWT tokenization
 - **IP Management Service** – Manages IP-related tasks using X-API-KEY authentication for API access
-- **Gateway/Proxy Service** – Routes communication between clients and microservices
+- **Gateway/Proxy Service** – Routes communication between clients (Auth Service and IP Management Service)
 - **Web Client** – Provides a user interface connected to the Gateway Service
 
 ## Installation
 
  - Clone the repository:
-   - git clone `git@github.com:jcarpizo/web-based-ip-address-management-system.git`
-   - cd web-based-ip-address-management-system
+   - `git clone git@github.com:jcarpizo/web-based-ip-address-management-system.git`
+   - `cd web-based-ip-address-management-system`
  - Build and start the containers:
-   - docker-compose up --build
+   - `docker-compose up --build`
    - - This will assign IP addresses, create databases, run migrations, and seed each service.
  - Done: Access the web client at:
       - http://127.0.0.1:8002/login
