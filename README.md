@@ -30,7 +30,7 @@ The system is built with four components using the Laravel framework:
    - `cd web-based-ip-address-management-system`
  - Build and start the containers:
    - `docker-compose up --build`
-   - - This will assign IP addresses, create databases, run migrations, and seed each service.
+   - - This will assign IP addresses, create databases, run migrations, PHP Unit test cases, and seed each service.
  - Done: Access the web client at:
       - http://127.0.0.1:8002/login
 
