@@ -11,6 +11,7 @@
 - Node Js v24.2.0 and npm 11.3.0 
 - React Js 19.1.0
 - Laravel Framework 10.48.29
+- Guzzle, PHP HTTP client 7.9
 
 ## Architectures
 
