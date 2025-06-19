@@ -25,8 +25,10 @@ class IpAddressController extends Controller
      * @param IpAddressLogsInterface $ipLogsService
      */
     public function __construct(IpAddressInterface $ipService, IpAddressLogsInterface $ipLogsService) {
+        $this->middleware('ip.apikey');
         $this->ipService = $ipService;
         $this->ipLogsService = $ipLogsService;
+
     }
 
     /**
