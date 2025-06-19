@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Observers;
 
@@ -29,10 +29,9 @@ class IpAddressObserver
             'comments' => $model->getOriginal('comments'),
             'ip_address' => $model->getOriginal('ip_address'),
         ];
-        $newValues = $model->only('label', 'comments', 'ip_address');
 
         $old = $event === 'updated' ? json_encode($oldValues) : ($event == 'deleted' ? json_encode($oldValues) : null);
-        $new = $event === 'deleted' ? null : json_encode($newValues);
+        $new = $event === 'deleted' ? null : json_encode($model->only('label', 'comments', 'ip_address'));
 
         IpAddressLogs::create([
             'event'          => $event,

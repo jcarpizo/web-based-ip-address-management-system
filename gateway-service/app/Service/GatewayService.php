@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Service;
 
@@ -10,6 +10,13 @@ use Illuminate\Http\JsonResponse;
 
 class GatewayService implements GatewayInterface
 {
+    /**
+     * @param string $method
+     * @param string $serverUrl
+     * @param array $data
+     * @param array $headers
+     * @return JsonResponse
+     */
     public function serverRequest(string $method, string $serverUrl, array $data = [], array $headers = []): JsonResponse
     {
         try {

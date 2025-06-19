@@ -30,6 +30,10 @@ class GatewayRequest extends FormRequest
         ];
     }
 
+    /**
+     * @param Validator $validator
+     * @return mixed
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

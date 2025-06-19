@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -10,12 +10,23 @@ use Illuminate\Support\Facades\Config;
 
 class AuthServiceController extends Controller
 {
+    /**
+     * @var GatewayInterface
+     */
     private GatewayInterface $gatewayService;
+
+    /**
+     * @param GatewayInterface $gatewayService
+     */
     public function __construct(GatewayInterface $gatewayService)
     {
         $this->gatewayService = $gatewayService;
     }
 
+    /**
+     * @param GatewayRequest $gatewayRequest
+     * @return JsonResponse
+     */
     public function authLogin(GatewayRequest $gatewayRequest): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST',   $this->getServiceUrl() . '/api/auth/login', [
@@ -24,6 +35,10 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param GatewayRequest $gatewayRequest
+     * @return JsonResponse
+     */
     public function authRegister(GatewayRequest $gatewayRequest): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST',   $this->getServiceUrl() . '/api/auth/register', [
@@ -33,6 +48,10 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function authVerifyToken(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST', $this->getServiceUrl() . '/api/auth/verify',[],[
@@ -40,6 +59,10 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function authRefreshToken(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST', $this->getServiceUrl()  . '/api/auth/refresh',[],[
@@ -47,6 +70,10 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function authLogout(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST', $this->getServiceUrl() . '/api/auth/logout',[],[
@@ -54,6 +81,10 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function authUserLogs(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/auth/logs',[],[
@@ -61,6 +92,11 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $userId
+     * @return JsonResponse
+     */
     public function authUserById(Request $request, int $userId): JsonResponse
     {
         return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/auth/user/'.$userId,[],[
@@ -68,6 +104,9 @@ class AuthServiceController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function getServiceUrl(): string
     {
         return Config::get('services.auth.url');

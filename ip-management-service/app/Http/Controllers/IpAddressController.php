@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
@@ -10,8 +10,14 @@ use Throwable;
 
 class IpAddressController extends Controller
 {
+    /**
+     * @var IpAddressInterface
+     */
     private IpAddressInterface $ipService;
 
+    /**
+     * @var IpAddressLogsInterface
+     */
     private IpAddressLogsInterface $ipLogsService;
 
     /**

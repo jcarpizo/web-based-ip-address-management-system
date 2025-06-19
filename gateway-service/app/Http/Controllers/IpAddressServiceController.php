@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -9,12 +9,23 @@ use Illuminate\Support\Facades\Config;
 
 class IpAddressServiceController extends Controller
 {
+    /**
+     * @var GatewayInterface
+     */
     private GatewayInterface $gatewayService;
+
+    /**
+     * @param GatewayInterface $gatewayService
+     */
     public function __construct(GatewayInterface $gatewayService)
     {
         $this->gatewayService = $gatewayService;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function ipCreate(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('POST',   $this->getServiceUrl() . '/api/ip/create', $request->toArray(),[
@@ -22,6 +33,11 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
     public function ipGet(Request $request, int $id): JsonResponse
     {
         return $this->gatewayService->serverRequest('GET',   $this->getServiceUrl() . '/api/ip/get/'. $id, [], [
@@ -29,6 +45,11 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int|null $userId
+     * @return JsonResponse
+     */
     public function ipList(Request $request, ?int $userId = null): JsonResponse
     {
         return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/list/'. $userId, [], [
@@ -36,6 +57,11 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
     public function ipUpdate(Request $request, int $id): JsonResponse
     {
         return $this->gatewayService->serverRequest('PUT', $this->getServiceUrl()  . '/api/ip/update/'. $id, $request->toArray(), [
@@ -43,6 +69,11 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return JsonResponse
+     */
     public function ipDelete(Request $request, int $id): JsonResponse
     {
         return $this->gatewayService->serverRequest('DELETE', $this->getServiceUrl() . '/api/ip/delete/'. $id, [], [
@@ -50,6 +81,10 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function ipLogs(Request $request): JsonResponse
     {
         return $this->gatewayService->serverRequest('GET', $this->getServiceUrl() . '/api/ip/logs', [], [
@@ -57,6 +92,9 @@ class IpAddressServiceController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function getServiceUrl(): string
     {
         return Config::get('services.ip.url');

@@ -1,16 +1,18 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthLoginRequest;
 use App\Http\Requests\AuthRegisterRequest;
 use App\Interfaces\AuthInterface;
-use App\Models\UserLogs;
 use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class AuthController extends Controller
 {
+    /**
+     * @var AuthInterface
+     */
     private AuthInterface $authService;
 
     /**
@@ -100,6 +102,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function authUserLogs(): JsonResponse
     {
         $token = auth()->user();
@@ -109,13 +114,15 @@ class AuthController extends Controller
         return response()->json(
             [
                 'success' => true,
-                'user_logs' => UserLogs::with('user')
-                    ->orderBy('updated_at', 'desc')
-                    ->get(),
+                'user_logs' => $this->authService->getUsersLogs(),
                 'message' => 'User Logs successfully retrieved'
             ]);
     }
 
+    /**
+     * @param int $userId
+     * @return JsonResponse
+     */
     public function authUserById(int $userId): JsonResponse
     {
         $token = auth()->user();
@@ -130,6 +137,9 @@ class AuthController extends Controller
             ]);
     }
 
+    /**
+     * @return JsonResponse
+     */
     private function unAuthorisedUser(): JsonResponse
     {
         return response()->json(['error' => 'Unauthorized'], 401);
