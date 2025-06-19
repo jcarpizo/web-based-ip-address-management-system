@@ -76,6 +76,9 @@ Note: These accounts are for testing purposes only.
 ### Postman Request Getting IP Address with X-API-KEY (Application API Key)
 ![Alt text](screenshots/get-ip-address-app-key.png)
 
+### Docker with PHP Unit Initial IP Address Test Case
+![Alt text](screenshots/composer-docker-phpunit.png)
+
 ## Future Improvements
 
 - Caching mechanism using Redis 
@@ -84,7 +87,7 @@ Note: These accounts are for testing purposes only.
 - Improved security for cookies and local storage 
 - Testing with PHPUnit and mocking objects 
 - Expanded request and audit logging in the Gateway Service 
-- Logging with Kibana 
-- Refactoring React.js code 
-- QA automation testing using Java, Selenium, and Cucumber 
+- Logging with Kibana monitoring tools
+- Refactoring PHP and React.js codes
+- QA automation testing using Java, Selenium, and Cucumber
 - Exploring Rust for APIs with Axum or Rocket
