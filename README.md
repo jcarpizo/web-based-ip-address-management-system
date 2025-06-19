@@ -12,6 +12,7 @@
 - React Js 19.1.0
 - Laravel Framework 10.48.29
 - Guzzle, PHP HTTP client 7.9
+- Postman
 
 ## Architectures
 
