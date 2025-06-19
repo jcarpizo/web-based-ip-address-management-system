@@ -15,6 +15,10 @@ until php artisan migrate:fresh --seed --force; do
   sleep 3
 done
 
+# run application tests
+echo "→ Running PHPUnit tests…"
+php artisan test
+
 if [ "$SERVICE_PATH" = "web-client" ]; then
   echo "→ Installing JS dependencies & building assets for web-client…"
   npm install
