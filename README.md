@@ -11,6 +11,7 @@
 - Node Js v24.2.0 and npm 11.3.0 
 - React Js 19.1.0
 - Laravel Framework 10.48.29
+- Guzzle, PHP HTTP client 7.9
 
 ## Architectures
 
@@ -47,6 +48,32 @@ Note: These accounts are for testing purposes only.
 | Test User One | user1@gmail.com | 123456   | User  |
 | Test User Two | user2@gmail.com | 123456   | User  |
 | Admin User    | admin@gmail.com | 123456   | Admin |
+
+## Screenshot Pages
+
+### Register Page
+![Alt text](screenshots/register-page.png)
+--- 
+### Login Page
+![Alt text](screenshots/login-page.png)
+--- 
+### Standard User Page
+![Alt text](screenshots/user-dashboard-page.png)
+--- 
+### Admin User Page
+![Alt text](screenshots/admin-dashboard-page.png)
+--- 
+### IP Address Audit Logs Page
+![Alt text](screenshots/ip-audit-logs-page.png)
+--- 
+### User Login and Logout Audit Logs Page
+![Alt text](screenshots/login-logs-page.png)
+--- 
+### Postman Request with Bearer Token from Gateway Service
+![Alt text](screenshots/auth-post-request-bearer-token.png)
+--- 
+### Postman Request Getting IP Address with X-API-KEY (Application API Key)
+![Alt text](screenshots/get-ip-address-app-key.png)
 
 ## Future Improvements
 
