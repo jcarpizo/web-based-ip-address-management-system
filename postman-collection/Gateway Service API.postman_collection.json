@@ -1,0 +1,646 @@
+{
+	"info": {
+		"_postman_id": "f6bc65e9-fac6-46a0-a40e-4c659309a371",
+		"name": "Gateway Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13912437"
+	},
+	"item": [
+		{
+			"name": "{{gateway-service-service}}api/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/login",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de3133v2@gmail.com2",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/register",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/verify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDk4NzEyMjEsImV4cCI6MTc0OTg3NDgyMSwibmJmIjoxNzQ5ODcxMjIxLCJqdGkiOiJtaFh6b3l2M1RLd240ZFV4Iiwic3ViIjoiNiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.b2lPsRQl2jBHllVZD-bu0eHm1ITUIN6e_3M_7PW6c4e3ki_TeIvLxYPxETj5N6e-yUNn_mDe5DK8fgIwEu4JOA0b4oOSHiuiMsHvKmsnyUVh6FNXZ_C5iCVQjS3B_fCZNXdfbKTUaVUTcHiO7KLAFZLUPgr5gDPhhGqKxnQHAiILT_2AAzygqPvjCvSieOzyEoSER2npkAdr-R4pPw28KwZncuEV42vQv19j50_Pl2ypGbPVATlnDmKagkmct0rpMBXss8oTRQ-opb2rlGmcETQI0qNkOAshfFwAnoBHPBtkxkiduxMWQ9QbeDAOzUCgnh0JK7IjrlfpDCIYL3FArSdOALgvx3F_-PiOn_FMm-St0Ig_rlPZnHohj0yEuysUWq9Vs0U8TGsRfIdqrtPI8hGOnlOb0O_NqkP9SVekI-VYH8-CoSB7D6JwNiJAbhS3P-ItnquKvU1S3ALgBaoOlTwkwSqU499tjRpY1Pt2aKDPQOOWWI8OZhjtQ40u21WYxoy9vNqpK76Ui109zHNzRlscX7UOmCI6DAyW9_lADsR-9Y4cByA0uKe08BYa0RLSqXROUCTBgPwo6aMq0dwgOwDkCL8InrOunz0MzLwpPSnPy5HkkbqwxQAgxQf3Q78sZSigr0AJzuJXOLDd-SoMKcE_ETEAoP78otTerrO627M",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/verify",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/logs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NTAwODkxNDksImV4cCI6MTc1MDA5Mjc0OSwibmJmIjoxNzUwMDg5MTQ5LCJqdGkiOiI0b1VvdW9lcXlqOHJNdmFNIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.dCJeU_y6BoAn6EpWmlg3AaDZSGdQllziNdwoh1Rd-qNfb2gvihtmRruP1hTGy4DvTCWH_Ko62q8Q8yofwCRMrSsev5YpnL2JXpFe8v7nRHacOxAygdtA00GGNhP4W63HQyEVMwYbxa6pXSfbYoDFC0Tdo-H2Nw27yuznOud1NYetDomYwZeVFL8Iy5v8w0QzVgtr_JbvYFNY3FMuT4pLvZoUNLjxYAP22qzx0gdDRrt4cxTjd8eH1n7K4Akr-ov0A5B_H0l3Op0v6taTj2wMUnyvZbA2DYIYC06Gm0MLvV8zLGSssTs5dLxcvvcffGRimG-lZos6WjL_zZzLT8jl5VmMk-mSm6eLVDkjBqLXe2jSlkRK9VI96hhRWdOTNgSfPEYCsjanF1yTsLRwf2Ci1pg7APqlGBlHLeilYZiZJRqsjqzj4nODFrsV6f1SwdbzZp7rBaDox7L8jc059Pmw4OZx0_rTSqL4fQo4MHQHEDs06EVIHkmGmwhLQSqzNwMUplckSmTyzk4CLSgzkvBXMR4w6BgF0cTtpikoC9tzdU8gdojoLaOSu1DISP0Ptl4d0vBhTpNSA47jrrzwBWh8AOAIyqwBE-4Vts3GTnCbH6pAe6pzR0uyMHuG1X1Q1jx9DVhyxSvwlZaCAcbU1PNoJRf1hP1YB3JKQNYZnN4OeSA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/logs",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/user/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NTAyNTAwMTIsImV4cCI6MTc1MDI1MzYxMiwibmJmIjoxNzUwMjUwMDEyLCJqdGkiOiJoRXNDMUR0T3dnUVNkU1ljIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.HZEWuvot-46-PcagkcROrgiQJDFxhPyUR3Xh4woEFPBvSReOAhXMic4J_ILY0JngrQ2j9HJ-C3K7c0lbjHBfgrkuttwTtyIq2k6da0DhlMYneGGh0QErjiiyVKbxF2RU_v_Sb0kYo22-oyTH4EKeGnVg4l04a9sh-chcnc2GpOJzUpQyC6R04avYP5d1u99E7yfIquHCMlx-QnoN4it7dBKGY2sMoiyTnrJQu_O_-1B68Fn1zZ4z8QOt6jAzpJKIDhmio6bR9ezH0Q_4vQ5Bbi9VcECTmYJWpY8T2NJhHxdHaRGaNFAKoFYuU2DpE_p1ugAspWYcNCPe6B4a5u_pVjsv-S4qoiBxy8aH-2sAJcUJVg5CQKoMiHfVn1fJxvfHcTfl0qG7-bdv3Qp_YYO6J0CpS75EsPRLgYmRvyo30XcE2UVlQu1M0aVk3hojxiEd6W4oVw5Tendcgggn-W9aY_8mUFMSrtm1zQo7mpnYzZ_1ZmABwyldgmaAX10TQhJfOE9M_hWjtQSk0LQonRGb06XHfpiEJDDUOZk55Jyd2VbrimWMcouPREubib4i0tRlOalFQU1ddlIZOkIVoK1s72sbqi9jIEdtzUeRqG8E1d0Dwcx3wrK0bub6e06DiT2_tQ5J_orHMYlOosq6Laa6LPDwDfsMNcc3SKnPJJJfuhM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/user/1",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvcmVmcmVzaCIsImlhdCI6MTc0OTg3MDc3OSwiZXhwIjoxNzQ5ODc0Mzc5LCJuYmYiOjE3NDk4NzA3NzksImp0aSI6Inhnb29uSTY5VzlaQ2Foc2oiLCJzdWIiOiI2IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.OqyA-YuOCUgoUKb82x8oJ4z4uRAyY09VK3f5TgbMTPD22RfQgn-HADC9bZeIpkDILoZVw2EnyfDRMJQnO5I45dzO_O8doDOdW3tr0aLWaL1SNLtorhZ57IdzDbtp3d6FjHpV8tYYzmkWyHjjfL_nBIVTc5VKP11bawvDaB9BRPxSfGb8eCR2Bm5mPIzTuOi-s5lh81ws3B2LVrkdf8EY6--rph3rMdVoKUEDNAruZ0MO4L7AiPV_6dQ1VrTCIdM3N71jbnuuT0zvRnGGWVVkmnkBAqYzBysQEQX1PuUlOJ8sQq2y1aKi9l-eDPtcSY9KVsfY4Ok7Tq-3rL0uf3sk7rOi8xlZspufgvS0urm1dRN58GdgiMyvvbgd3O-oS9fq0DcaMtlQJGMlAhT6OWVKzm8fgFYy-bS8EX_mFOPHb0mgdKt7ab5ZLusozUf6cgVtRE9b9h3UOtLULL5J4h7ZT2S_7xBfAWcQ15a8BDPGKll8QLmtD4XtKN5dI4D_1Eh33ZH91MhRZHZ9l1_H-bPnp-xEpP7NqeSPqeYTzBZDskaiPk3Rps8g1IOjykOGXhW50LYpng9uLxg9-bxKpeo_I8_IEdOhfT8L24rasGkq7E8I4ttAsNJtOePDQ5DxV5twvEKvOPZkZL6pP5EbWzwaWyTXVcHRhqqIlQD33qOtwjI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Charset",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Proxy-Authorization",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/refresh",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/auth/logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "asdasd",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/auth/logout",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{gateway-service-service}}api/ip/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/create?label=2222222&ip_address=192.168.1.1&added_by_user_id=1&updated_by_user_id=2",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"create"
+					],
+					"query": [
+						{
+							"key": "label",
+							"value": "2222222"
+						},
+						{
+							"key": "ip_address",
+							"value": "192.168.1.1"
+						},
+						{
+							"key": "added_by_user_id",
+							"value": "1"
+						},
+						{
+							"key": "updated_by_user_id",
+							"value": "2"
+						},
+						{
+							"key": "comments",
+							"value": "1231231231",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{{gateway-service-service}}api/ip/get/2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "label",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/get/2",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"get",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{{gateway-service-service}}api/ip/list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "label",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/list",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{{gateway-service-service}}api/ip/logs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "label",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/logs",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{{gateway-service-service}}api/ip/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "label",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/delete/12",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"delete",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{{gateway-service-service}}api/ip/update/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "label",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{gateway-service-service}}api/ip/delete/12",
+					"host": [
+						"{{gateway-service-service}}api"
+					],
+					"path": [
+						"ip",
+						"delete",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

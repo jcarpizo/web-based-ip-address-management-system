@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "3c2bfaef-8171-4986-bca8-24d6a04ffecf",
+		"name": "Auth Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13912437"
+	},
+	"item": [
+		{
+			"name": "{{autserviceip}}api/auth/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de3331v@gmail.com1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/register",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/login?email=jcarpizo.de3331v@gmail.com1&password=J@8p3r15",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de3331v@gmail.com1"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/user/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NTAyNDk2OTQsImV4cCI6MTc1MDI1MzI5NCwibmJmIjoxNzUwMjQ5Njk0LCJqdGkiOiJERHEzYmlPQ25FZlJ4YW1sIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.IxkPavltlBA0qt26j0fVN5TXVosWDO9Ha4CqaADirNXt73Qg_lllxW4MmJh-m9WD52birNKpnTl1xytEbNSeHnIbluUvMyCswqgawrCp_c0H9KwJAAKTbSpNL4RIw3TqNRdZaKMwiT3hMWBDe9-xjiSLwGJPM9_okJZP_jYauN3hgAgXGlPHaa0ajBlM5stwLTiNfFof13ijnbN-OJJSRrtFRyGpJmaQArD1OrbtIbEyjJdT0gQjES4WzlSjd7xWIMrfU4GDQpZXTzXrPFW_GCBYePrzcYxVM5P9bMHzM4ZneKdk3mI-JR_nPOW27agvd2Tpl-DWVyWMqYiPhYjIukOyoiMThUQC8olLAbOt7aYqW6JKmrOIHSK0yFT3Rst-cyBcosyuzeP3Jnx8Cc_qvQbLzEs7Kc7X6KM-sj8yMiwJoUy0BTcIwq_OO-S014JfvImAelzxkX6T4ihevHDPOc1nku5vwe0_MpEumEK-6-2ccPQ22KbL5LxsZ2aqKdj2_IdH7mFz3KhF0gweBwoW6ElHRP1b-CujWnZxLsYjaBBN937hP2CBjXnxI7pBITGqoor80hwqF4VGiT9CdD2VhBX0Zh49g-hBla2nXKWAbuH-acFyHYRnTeW4EVIWSVWDxpWb5uEBkyjo3YkUV0U1mpThmrmwy4OfC8-gKsdJTlo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/user/1",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/verify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDk3NDM5MjMsImV4cCI6MTc0OTc0NzUyMywibmJmIjoxNzQ5NzQzOTIzLCJqdGkiOiJjNjlMMlR2SGhsUzJENXo1Iiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EYA4KNZBeq8MRoO5Z10aKcwkIPTf9Gcb-QIb-bJHkwZMbTPoGBEkd7L35wrE2ceOmJFXQ9t809i5bXxnfyIArX6q94F2Op8GnjS9Jvy1Te8JwmkPNUoB7T7FaP8J6d8UrnWmmLRr1uquUqAX8UfzCH8c-G4MFp1keaHH4Ege0JpbEZEEF6Xg6ydHQYwOAFn5KIfXgs28NnR-6PGfmA-4HD1ZNe18fSWt0LiJiwqdaZRkhsWxln5baIYsUT0EyeR6IqmpUld05oAY9LqSXBb6J3sSPmu6cyiYrUde4Ij0gm-1DpwmC3IuVtIotKKzck5CbUEF7vkPVF2-mJ0klmudc4GJoXvd5Wr5JWi20Xyoaq1wZ6YajXqbGFBL1RPMrGF_TLUxVHsVqmOAjU54bVe8DS468sCZm2bc8Vn65aUphBJii-ed43WnlGzqJ0d1r35ILnYDr7S2CouYYRIft-DF4JamR7KhMHLBIJFpzpBEiXHmu3aO-nPlezi8e2ABzQ3rnpfmrbZ9HVosxBDHAkMeN06_lV6cMQPMDlFkHY0IzeiNKKir2JX_LoaxJI62qMkIEv1y0DJiWDJsWMirLaHwIPmEfFlivcBlSnD_C0yiHNF3zQNqXE2eUbey1VxaqOo0CfscUF3jOUKzIIONVQQHiGSHCPyOgETaKMjJ_PbE3FE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/verify",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/logs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NTAwODg5NDEsImV4cCI6MTc1MDA5MjU0MSwibmJmIjoxNzUwMDg4OTQxLCJqdGkiOiJUaktTeDFDckVrem8ycXZUIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.I2XrYD3P0jf_f5HEUAY-xvp2L4WFLVHgmbjnXl3wsXr_AP5NW45apnI0ks_q9KE2q8O1dO1aHwKaz-WaNlOpkpV9uNNsouhBN0AFfbCrAIGWNAX5xHpXra26xiovWNHbUgsPdNGwXZ6IUxM1JXhPgCIe8_YQgcHJoDQZ1AxWUIfOJJDNiV6AXJofCnijVzMOzb0jgeTlxQ_IQlfDmeEqeBoN1iYksGB4t4uLEucQGAxb-Gqaj9L8h0aIT-C0poIvP7KRlGW7E5tWirhMdblvzOjKn8J8P2xnmwpn0CCmpZM_FNBdVz9QEt987O6yi5ZqaYANqhF6Gpl-z7VZiUY7KUGfur_BEa3scd9jjRRxojonKWggCDC5KrdskIqM8c1Vw-6ceqbIht_jUguA_sXr9tCXA9LCDJZUOx2XpzIyu1pJh7riFg2RwTMmzfKeD-Q-D_VmH9AUyfwkzfjkmu4LGbGfRfCT2-FKLMn2fcstel3F20hRkgt9KSPk-77jM6BrEDp6Fn1Fb4tBF6XpWWqrkl7ACXvcrtbNbKv2uS8CNShy4tVvf-gGnIXhfrD6kf3SP3-utofWErOUc-n4n2z9N6YYDc5MqxAd13_RAxzlAV2Xfj4jCLQAHK5w3RtykikJkQTjwI52ZlkZfY2Kz1GQj75fEGpWKJLh-CgaytzyDjY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/logs",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/refresh",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDk3NDEzODksImV4cCI6MTc0OTc0NDk4OSwibmJmIjoxNzQ5NzQxMzg5LCJqdGkiOiJ1MDg1Y0tnc2hRSkUyekt1Iiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.3CIaXSQLCd5r1moGL3Osk3MiSYexiYvIJyMqSBJt3p8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/refresh",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{autserviceip}}api/auth/logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NDk3NDM5MjMsImV4cCI6MTc0OTc0NzUyMywibmJmIjoxNzQ5NzQzOTIzLCJqdGkiOiJjNjlMMlR2SGhsUzJENXo1Iiwic3ViIjoiNCIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.EYA4KNZBeq8MRoO5Z10aKcwkIPTf9Gcb-QIb-bJHkwZMbTPoGBEkd7L35wrE2ceOmJFXQ9t809i5bXxnfyIArX6q94F2Op8GnjS9Jvy1Te8JwmkPNUoB7T7FaP8J6d8UrnWmmLRr1uquUqAX8UfzCH8c-G4MFp1keaHH4Ege0JpbEZEEF6Xg6ydHQYwOAFn5KIfXgs28NnR-6PGfmA-4HD1ZNe18fSWt0LiJiwqdaZRkhsWxln5baIYsUT0EyeR6IqmpUld05oAY9LqSXBb6J3sSPmu6cyiYrUde4Ij0gm-1DpwmC3IuVtIotKKzck5CbUEF7vkPVF2-mJ0klmudc4GJoXvd5Wr5JWi20Xyoaq1wZ6YajXqbGFBL1RPMrGF_TLUxVHsVqmOAjU54bVe8DS468sCZm2bc8Vn65aUphBJii-ed43WnlGzqJ0d1r35ILnYDr7S2CouYYRIft-DF4JamR7KhMHLBIJFpzpBEiXHmu3aO-nPlezi8e2ABzQ3rnpfmrbZ9HVosxBDHAkMeN06_lV6cMQPMDlFkHY0IzeiNKKir2JX_LoaxJI62qMkIEv1y0DJiWDJsWMirLaHwIPmEfFlivcBlSnD_C0yiHNF3zQNqXE2eUbey1VxaqOo0CfscUF3jOUKzIIONVQQHiGSHCPyOgETaKMjJ_PbE3FE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{auth-server-service}}api/auth/logout",
+					"host": [
+						"{{auth-server-service}}api"
+					],
+					"path": [
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

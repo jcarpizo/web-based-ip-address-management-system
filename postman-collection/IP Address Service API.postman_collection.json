@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "c917aedf-f1ce-4f40-aa33-212f320ef5e0",
+		"name": "IP Address Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13912437"
+	},
+	"item": [
+		{
+			"name": "{{ip-address-service}}}api/ip/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-API-KEY",
+						"value": "3qohBUb4RJLUduNQ2ArCrokddmtmckl42vZ1g0IN",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "jcarpizo.de333v@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "J@8p3r15",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "asdasdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/create?label=asdhajsd232322&ip_address=127.1.2.16&added_by_user_id=12123&updated_by_user_id=2",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"create"
+					],
+					"query": [
+						{
+							"key": "label",
+							"value": "asdhajsd232322"
+						},
+						{
+							"key": "ip_address",
+							"value": "127.1.2.16"
+						},
+						{
+							"key": "added_by_user_id",
+							"value": "12123"
+						},
+						{
+							"key": "updated_by_user_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip-address-service}}api/ip/update/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/update/1?label=asdasd&ip_address=232323123&added_by_user_id=23&updated_by_user_id=1",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"update",
+						"1"
+					],
+					"query": [
+						{
+							"key": "label",
+							"value": "asdasd"
+						},
+						{
+							"key": "ip_address",
+							"value": "232323123"
+						},
+						{
+							"key": "added_by_user_id",
+							"value": "23"
+						},
+						{
+							"key": "updated_by_user_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip-address-service}}api/ip/list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-API-KEY",
+						"value": "3qohBUb4RJLUduNQ2ArCrokddmtmckl42vZ1g0IN1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/list",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip-address-service}}api/ip/logs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/logs",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"logs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip-address-service}}api/ip/get/1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/get/2",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"get",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{ip-address-service}}api/ip/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ip-address-service}}api/ip/delete/2",
+					"host": [
+						"{{ip-address-service}}api"
+					],
+					"path": [
+						"ip",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
