@@ -15,7 +15,8 @@ RUN apt-get update \
        build-essential \
        vim \
  && curl -fsSL https://deb.nodesource.com/setup_current.x | bash - \
- && apt-get install -y nodejs \
+ && apt-get install -y --no-install-recommends nodejs \
+ && npm install -g npm@11.3.0 \
  && docker-php-ext-configure intl \
  && docker-php-ext-install \
        pdo_mysql \

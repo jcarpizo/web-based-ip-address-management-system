@@ -18,11 +18,12 @@ fi
 if [ ! -f .env ]; then
   cp .env.example .env
   php artisan key:generate
-   if [ "$SERVICE_PATH" = "auth-service" ]; then
-      echo "→ Generating JWT secrets and certificates…"
-      php artisan jwt:secret
-      php artisan jwt:generate-certs
-  fi
+fi
+
+if [ "$SERVICE_PATH" = "auth-service" ]; then
+   echo "→ Generating JWT secrets and certificates…"
+   php artisan jwt:secret --force
+   php artisan jwt:generate-certs --force
 fi
 
 until php artisan migrate:fresh --seed --force; do
@@ -30,11 +31,14 @@ until php artisan migrate:fresh --seed --force; do
   sleep 3
 done
 
-if [ -f package.json ]; then
-  echo "→ Installing JS dependencies…"
+if [ "$SERVICE_PATH" = "web-client" ] && [ -f package.json ]; then
+  echo "→ Installing JS dependencies for web-client…"
   npm install
   npm run build
 fi
+
+echo "→ Run the composer dump autoload..."
+composer dump-autoload
 
 # run application tests
 echo "→ Running PHPUnit tests…"

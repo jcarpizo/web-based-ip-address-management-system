@@ -17,9 +17,10 @@ class IpManagementServiceApiKey
     public function handle(Request $request, Closure $next): Response
     {
         $clientKey = $request->header('X-API-KEY');
-        if (!$clientKey || ! IpAddressAppKey::where('key', $clientKey)->exists()) {
+        if (!$clientKey || !IpAddressAppKey::where('key', $clientKey)->exists()) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
         return $next($request);
     }
+
 }
