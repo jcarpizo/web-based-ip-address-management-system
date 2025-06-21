@@ -2,13 +2,12 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8001/api',
-    withCredentials: false, // send cookies (for refresh token)
+    withCredentials: false, // If true cors issue
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'X-API-KEY': '3qohBUb4RJLUduNQ2ArCrokddmtmckl42vZ1g0IN'
     },
-    rewrite: path => path.replace(/^\/api/, ''),
 });
 
 api.interceptors.request.use(config => {
