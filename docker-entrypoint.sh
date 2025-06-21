@@ -1,16 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-if [ "$SERVICE_PATH" != "web-client" ] && [ -n "$DB_HOST" ]; then
-  until mysqladmin ping -h"$DB_HOST" -P"$DB_PORT" --silent; do
-    echo "Waiting for DB at $DB_HOST:$DB_PORT..."
-    sleep 3
-  done
-fi
-
 cd /var/www
-
-rsync -a --delete "/src/${SERVICE_PATH}/" ./
+#rsync -a --delete "/src/${SERVICE_PATH}/" ./
 
 if [ -f composer.json ]; then
   echo "→ Installing PHP dependencies with Composer…"
@@ -28,17 +20,27 @@ if [ "$SERVICE_PATH" = "auth-service" ]; then
    php artisan jwt:generate-certs --force
 fi
 
-if [ "$SERVICE_PATH" != "web-client" ] && [ -n "$DB_HOST" ]; then
-  until php artisan migrate:fresh --seed --force; do
+#if [ "$SERVICE_PATH" = "web-client-service" ] && [ -f package.json ]; then
+#  echo "→ Cleaning JS workspace…"
+#  rm -rf node_modules
+#
+#  echo "→ Installing JS dependencies for web-client…"
+#  npm install --no-optional || echo "⚠️ npm install failed, continuing..."
+#
+#  echo "→ Building frontend…"
+#  npm run build || echo "⚠️ npm build failed, continuing..."
+#fi
+
+if [ "$SERVICE_PATH" != "web-client-service" ] && [ -n "$DB_HOST" ]; then
+  until mysqladmin ping -h"$DB_HOST" -P"$DB_PORT" --silent; do
     echo "Waiting for DB at $DB_HOST:$DB_PORT..."
     sleep 3
   done
-fi
 
-if [ "$SERVICE_PATH" = "web-client" ] && [ -f package.json ]; then
-  echo "→ Installing JS dependencies for web-client…"
-  npm install
-  npm run build
+  until php artisan migrate:fresh --seed --force; do
+      echo "Waiting for DB at $DB_HOST:$DB_PORT..."
+      sleep 3
+    done
 fi
 
 echo "→ Run the composer dump autoload..."

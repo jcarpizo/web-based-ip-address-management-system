@@ -40,7 +40,8 @@ services:
     depends_on:
       - auth-db
     volumes:
-      - ./auth-service:/src/auth-service
+      - ./auth-service:/var/www
+      #- ./auth-service:/src/auth-service
   #End:  Auth Micro Services
 
 
@@ -85,7 +86,8 @@ services:
     depends_on:
       - gateway-db
     volumes:
-      - ./gateway-service:/src/gateway-service
+      - ./gateway-service:/var/www
+      #- ./gateway-service:/src/gateway-service
   #End: Gateway Microservice
 
 
@@ -130,7 +132,8 @@ services:
     depends_on:
       - ip-mgmt-db
     volumes:
-      - ./ip-management-service:/src/ip-management-service
+      - ./ip-management-service:/var/www
+      #- ./ip-management-service:/src/ip-management-service
   #End: IP Management Microservice
 
 
@@ -146,7 +149,8 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      - ./web-client:/src/web-client-service
+      - ./web-client:/var/www
+      #- ./web-client:/src/web-client-service
   #End: Web Client Service
 
 

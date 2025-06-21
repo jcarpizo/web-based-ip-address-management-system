@@ -1,0 +1,5 @@
+auth-service/storage/certs/*
+auth-service/.env
+gateway-service/.env
+ip-management-service/.env
+web-client/.env
