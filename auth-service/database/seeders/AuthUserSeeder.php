@@ -14,22 +14,22 @@ class AuthUserSeeder extends Seeder
     {
         $authUsers = [
             [
-                'name' => 'Test User One',
+                'name' => fake()->name(),
                 'email' => 'user1@gmail.com',
                 'roles' => 'user',
-                'password' => '123456',
+                'password' => 'password',
             ],
             [
-                'name' => 'Test User Two',
+                'name' => fake()->name(),
                 'email' => 'user2@gmail.com',
                 'roles' => 'user',
-                'password' => '123456',
+                'password' => 'password',
             ],
             [
-                'name' => 'Admin User',
+                'name' => 'Super Root User',
                 'email' => 'admin@gmail.com',
                 'roles' => 'admin',
-                'password' => '123456',
+                'password' => 'password',
             ]
         ];
 
