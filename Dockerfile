@@ -39,7 +39,6 @@ RUN curl -sS https://phar.phpunit.de/phpunit-10.phar -o /usr/local/bin/phpunit \
 ENV NVM_DIR=/root/.nvm
 ENV NODE_VERSION=24
 
-# Install nvm, node, and symlink binaries to global path
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
     . "$NVM_DIR/nvm.sh" && \
     nvm install $NODE_VERSION && \
