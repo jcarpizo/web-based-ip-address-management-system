@@ -37,9 +37,17 @@ RUN curl -sS https://phar.phpunit.de/phpunit-10.phar -o /usr/local/bin/phpunit \
  && chmod +x /usr/local/bin/phpunit
 
 ENV NVM_DIR=/root/.nvm
+ENV NODE_VERSION=24
+
+# Install nvm, node, and symlink binaries to global path
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
     . "$NVM_DIR/nvm.sh" && \
-    nvm install 24
+    nvm install $NODE_VERSION && \
+    nvm use $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/node" /usr/bin/node && \
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/npm" /usr/bin/npm && \
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/npx" /usr/bin/npx
 
 # Copy entrypoint
 COPY docker-entrypoint.sh /usr/local/bin/

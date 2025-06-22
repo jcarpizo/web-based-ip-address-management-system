@@ -25,7 +25,7 @@ if [ "$SERVICE_PATH" = "web-client-service" ] && [ -f package.json ]; then
   rm -rf node_modules
 
   echo "→ Installing JS dependencies for web-client…"
-  npm install --no-optional || echo "⚠️ npm install failed, continuing..."
+  npm install || echo "⚠️ npm install failed, continuing..."
 
   echo "→ Building frontend…"
   npm run build || echo "⚠️ npm build failed, continuing..."
