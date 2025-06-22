@@ -47,6 +47,7 @@ class AuthController extends Controller
     {
         if (!$token = auth()->attempt($request->toArray())) {
             return $this->unAuthorisedUser();
+
         }
         return $this->respondWithToken($token);
     }
@@ -94,11 +95,7 @@ class AuthController extends Controller
         try {
             return $this->respondWithToken(auth('api')->refresh());
         } catch (Throwable) {
-            return response()->json(
-                [
-                    'message' => 'token has already expired',
-                    'error' => 'Unauthorized'
-                ], 401);
+            return $this->unAuthorisedUser();
         }
     }
 
@@ -142,6 +139,11 @@ class AuthController extends Controller
      */
     private function unAuthorisedUser(): JsonResponse
     {
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(
+            [
+                'success' => false,
+                'message' => 'token has already expired',
+                'error' => 'Unauthorized'
+            ], 401);
     }
 }

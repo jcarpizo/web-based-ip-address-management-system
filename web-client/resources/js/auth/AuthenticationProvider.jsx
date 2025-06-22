@@ -16,8 +16,13 @@ export function AuthProvider({children}) {
 
     useEffect(() => {
         (async () => {
-            try {
 
+            if (pathname === '/login') {
+                setChecking(false);
+                return;
+            }
+
+            try {
                 const res = await api.post('/auth/verify');
 
                 if (!res.data.error) {
@@ -27,17 +32,19 @@ export function AuthProvider({children}) {
                     if (pathname === '/login') {
                         navigate('/dashboard', {replace: true});
                     }
-
                     return;
                 }
 
                 if (res.data.message === 'token has already expired') {
                     const refreshRes = await api.post('/auth/refresh');
-                    localStorage.setItem('access_token', refreshRes.data.access_token);
+                    const newToken = refreshRes.data.access_token;
+                    localStorage.setItem('access_token', newToken);
+
+                    api.defaults.headers.Authorization = `Bearer ${newToken}`;
 
                     const newVerify = await api.post('/auth/verify');
                     if (!newVerify.data.error) {
-                        localStorage.setItem('user', JSON.stringify(res.data));
+                        localStorage.setItem('user', JSON.stringify(newVerify.data));
                         setUser(newVerify.data);
                         return;
                     }
@@ -45,15 +52,12 @@ export function AuthProvider({children}) {
 
                 localStorage.removeItem('access_token');
                 setUser(null);
-
-                if (pathname !== '/login') {
-                    navigate('/login', {replace: true});
-                }
+                navigate('/login', {replace: true});
 
             } catch (e) {
                 localStorage.removeItem('access_token');
                 setUser(null);
-
+                navigate('/login', {replace: true});
             } finally {
                 setChecking(false);
             }
