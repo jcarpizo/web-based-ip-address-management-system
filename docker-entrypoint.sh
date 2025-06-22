@@ -20,16 +20,16 @@ if [ "$SERVICE_PATH" = "auth-service" ]; then
    php artisan jwt:generate-certs --force
 fi
 
-#if [ "$SERVICE_PATH" = "web-client-service" ] && [ -f package.json ]; then
-#  echo "→ Cleaning JS workspace…"
-#  rm -rf node_modules
-#
-#  echo "→ Installing JS dependencies for web-client…"
-#  npm install --no-optional || echo "⚠️ npm install failed, continuing..."
-#
-#  echo "→ Building frontend…"
-#  npm run build || echo "⚠️ npm build failed, continuing..."
-#fi
+if [ "$SERVICE_PATH" = "web-client-service" ] && [ -f package.json ]; then
+  echo "→ Cleaning JS workspace…"
+  rm -rf node_modules
+
+  echo "→ Installing JS dependencies for web-client…"
+  npm install --no-optional || echo "⚠️ npm install failed, continuing..."
+
+  echo "→ Building frontend…"
+  npm run build || echo "⚠️ npm build failed, continuing..."
+fi
 
 if [ "$SERVICE_PATH" != "web-client-service" ] && [ -n "$DB_HOST" ]; then
   until mysqladmin ping -h"$DB_HOST" -P"$DB_PORT" --silent; do
@@ -43,10 +43,7 @@ if [ "$SERVICE_PATH" != "web-client-service" ] && [ -n "$DB_HOST" ]; then
     done
 fi
 
-echo "→ Run the composer dump autoload..."
-composer dump-autoload
-
-# run application tests
+#run application tests
 echo "→ Running PHPUnit tests…"
 php artisan test
 

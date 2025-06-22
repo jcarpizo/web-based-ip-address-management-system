@@ -16,7 +16,6 @@ services:
       - bash
       - -c
       - |
-        # create+chown in one go, then exec the real entrypoint
         mkdir -p /var/run/mysql-secure && \
         chown mysql:mysql /var/run/mysql-secure && \
         exec docker-entrypoint.sh mysqld    
@@ -62,7 +61,6 @@ services:
       - bash
       - -c
       - |
-        # create+chown in one go, then exec the real entrypoint
         mkdir -p /var/run/mysql-secure && \
         chown mysql:mysql /var/run/mysql-secure && \
         exec docker-entrypoint.sh mysqld    
@@ -90,13 +88,12 @@ services:
       #- ./gateway-service:/src/gateway-service
   #End: Gateway Microservice
 
-
   #Start: IP Management Microservice
   ip-mgmt-db:
     image: mysql:8.0
     ports:
       - "3309:3306"
-    container_name: ip-management-service
+    container_name: ip-mnmt-micro-service
     environment:
       MYSQL_DATABASE: ip_management-service-db
       MYSQL_USER: laravel
@@ -108,7 +105,6 @@ services:
       - bash
       - -c
       - |
-        # create+chown in one go, then exec the real entrypoint
         mkdir -p /var/run/mysql-secure && \
         chown mysql:mysql /var/run/mysql-secure && \
         exec docker-entrypoint.sh mysqld     
@@ -136,7 +132,6 @@ services:
       #- ./ip-management-service:/src/ip-management-service
   #End: IP Management Microservice
 
-
   #Start: Web Client Service
   web-client-service:
     build:
@@ -150,9 +145,7 @@ services:
       - "8002:8002"
     volumes:
       - ./web-client:/var/www
-      #- ./web-client:/src/web-client-service
   #End: Web Client Service
-
 
 volumes:
   auth-db-data:

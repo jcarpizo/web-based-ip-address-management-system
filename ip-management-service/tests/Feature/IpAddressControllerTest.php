@@ -1,6 +1,7 @@
 <?php
 
-namespace Feature;
+namespace Tests\Feature;
+
 
 use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
@@ -89,7 +90,7 @@ class IpAddressControllerTest extends TestCase
     private function createIpAddressWithIpv4(): TestResponse
     {
         return $this->post(route('ipCreate'), $this->payload([
-            'comments' => 'This from PHP Unit Test',
+            'comments' => 'This data is from PHP Unit Testing',
         ]), $this->headers);
     }
 
