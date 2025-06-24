@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('action_event');
+            $table->string('guard');
             $table->string('user_agent')->nullable();
             $table->ipAddress('ip_address')->nullable(false);
             $table->timestamps();

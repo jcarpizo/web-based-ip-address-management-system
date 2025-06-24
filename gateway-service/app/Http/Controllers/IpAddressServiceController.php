@@ -20,6 +20,7 @@ class IpAddressServiceController extends Controller
     public function __construct(GatewayInterface $gatewayService)
     {
         $this->gatewayService = $gatewayService;
+        $this->middleware('ip.auth');
     }
 
     /**

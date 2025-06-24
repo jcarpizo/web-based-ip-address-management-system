@@ -40,7 +40,6 @@ export default function IpManagementLogs() {
 
     return (
         <div className="table-responsive">
-            <br/><br/> <br/>
             <table className="table small table-striped">
                 <thead>
                 <tr>

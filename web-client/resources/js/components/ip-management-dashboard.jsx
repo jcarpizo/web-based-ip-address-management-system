@@ -214,7 +214,6 @@ export default function IpManagementDashboard() {
 
     return (
         <div >
-            <br/><br/><br/>
             <button className="btn btn-success mb-3" onClick={() => openModal()}>
                 + New IP Address
             </button>

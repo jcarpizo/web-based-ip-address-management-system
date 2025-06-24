@@ -2,7 +2,6 @@ import {useContext, useState} from 'react'
 import api from "../api/axiosInstance.js";
 import {AuthenticationProvider} from "../auth/AuthenticationProvider.jsx";
 import RegisterForm from "./ip-management-register.jsx";
-import Cookies from 'js-cookie';
 
 export default function LoginForm() {
     const [email, setEmail]       = useState('');
@@ -13,13 +12,6 @@ export default function LoginForm() {
         e.preventDefault();
         try {
             const res = await api.post('/auth/login', { email, password });
-
-            const token = res.data.access_token;
-            Cookies.set('access_token', token, {
-                expires: 1,
-                secure: true,
-                sameSite: 'Strict',
-            });
 
             localStorage.setItem('access_token', res.data.access_token);
             setUser(res.data.user);

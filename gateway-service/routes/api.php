@@ -33,7 +33,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('/user/{id}', [AuthServiceController::class, 'authUserById'])->name('authUserById');
 });
 
-Route::group(['prefix' => 'ip'], function () {
+Route::group(['prefix' => 'ip','middleware' => 'ip.auth'], function () {
     Route::post('/create', [IpAddressServiceController::class, 'ipCreate'])->name('ipCreate');
     Route::put('/update/{id}', [IpAddressServiceController::class, 'ipUpdate'])->name('ipUpdate');
     Route::get('/get/{id}', [IpAddressServiceController::class, 'ipGet'])->name('ipGet');

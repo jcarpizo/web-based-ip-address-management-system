@@ -28,6 +28,7 @@ export default function Navbar() {
     };
 
     return (
+        <>
         <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">IP Management System</a>
@@ -54,5 +55,11 @@ export default function Navbar() {
                 </div>
             </div>
         </nav>
+            <div className="container-fluid login-user" >
+            <h3>
+                Welcome, {getCurrentUser()?.name}
+            </h3>
+        </div>
+        </>
     );
 }

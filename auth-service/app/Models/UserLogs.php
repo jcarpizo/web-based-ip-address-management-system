@@ -13,7 +13,8 @@ class UserLogs extends Model
         'user_id',
         'action_event',
         'user_agent',
-        'ip_address'
+        'ip_address',
+        'guard',
     ];
 
     public function user()
